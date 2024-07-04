@@ -24,6 +24,11 @@
                 "title": "Cortex",
                 "href": "https://cortex.so",
                 "newWindow": true
+            },
+            "research": {
+                "title": "Model Research",
+                "href": "https://huggingface.co/jan-hq",
+                "newWindow": true
             }
         }
     },

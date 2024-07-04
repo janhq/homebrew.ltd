@@ -26,21 +26,6 @@ const Blog = () => {
     return (
         <div className="nextra-wrap-container py-14">
             <div className="w-full mx-auto">
-                <h1 className="text-6xl !fqont-normal leading-tight lg:leading-tight mt-2 font-serif">
-                    Homebrew Computer Company
-                </h1>
-                <div className="text-black/60 dark:text-white/60">
-                    <p className="text-base mt-2 leading-relaxed">
-                        The latest updates from Jan. See&nbsp;
-                        <a
-                            href="/changelog"
-                            className="text-blue-600 dark:text-blue-400 cursor-pointer"
-                        >
-                            Changelog
-                        </a>
-                        &nbsp;for more product updates.
-                    </p>
-                </div>
 
                 <div className="mt-10">
                     <ul className="flex lg:gap-4 gap-1 whitespace-nowrap overflow-auto lg:overflow-hidden lg:whitespace-normal">
