@@ -1,26 +1,4 @@
-// Nicole: I'd like the sidebar to show the actual article names instead of the categories
-// {
-//     "*": {
-//         "display": "hidden",
-//         "theme": {
-//             "breadcrumb": false,
-//             "pagination": false,
-//             "sidebar": false
-//         }
-//     },
-//     "all-categories": {
-//         "title": "All Categories",
-//         "display": "normal",
-//         "href": "/blog"
-//     },
-//     "engineering-cat": {
-//         "title": "Engineering",
-//         "display": "normal",
-//         "href": "/blog?category=engineering"
-//     },
-//     "research-cat": {
-//         "title": "Research",
-//         "display": "normal",
-//         "href": "/blog?category=research"
-//     }
-// }
+{
+    "benchmarking-nvidia-tensorrt-llm": "Benchmarking Nvidia TensorRT-LLM",
+    "bitdefender": "Postmortem: Bitdefender False Positive"
+}
