@@ -1,0 +1,48 @@
+{
+    "index": {
+        "type": "page",
+        "title": "Homepage",
+        "display": "hidden",
+        "theme": {
+            "layout": "raw"
+        }
+    },
+    "about": {
+        "title": "About",
+        "type": "page"
+    },
+    "handbook": {
+        "title": "Handbook",
+        "type": "menu",
+        "items": {
+            "team": {
+                "title": "Vision",
+                "href": "/handbook/vision"
+            },
+            "principles": {
+                "title": "Principles",
+                "href": "/handbook/principles"
+            },
+            "process": {
+                "title": "Onboarding",
+                "href": "/handbook/onboarding"
+            }
+        }
+    },
+    "our-work": {
+        "title": "Our Work",
+        "type": "menu",
+        "items": {
+            "jan": {
+                "title": "Jan",
+                "href": "https://jan.ai",
+                "newWindow": true
+            },
+            "cortex": {
+                "title": "Cortex",
+                "href": "https://cortex.so",
+                "newWindow": true
+            }
+        }
+    }
+}
