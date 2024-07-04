@@ -11,6 +11,22 @@
         "title": "About",
         "type": "page"
     },
+    "our-work": {
+        "title": "Our Work",
+        "type": "menu",
+        "items": {
+            "jan": {
+                "title": "Jan",
+                "href": "https://jan.ai",
+                "newWindow": true
+            },
+            "cortex": {
+                "title": "Cortex",
+                "href": "https://cortex.so",
+                "newWindow": true
+            }
+        }
+    },
     "handbook": {
         "title": "Handbook",
         "type": "menu",
@@ -26,22 +42,6 @@
             "process": {
                 "title": "Onboarding",
                 "href": "/handbook/onboarding"
-            }
-        }
-    },
-    "our-work": {
-        "title": "Our Work",
-        "type": "menu",
-        "items": {
-            "jan": {
-                "title": "Jan",
-                "href": "https://jan.ai",
-                "newWindow": true
-            },
-            "cortex": {
-                "title": "Cortex",
-                "href": "https://cortex.so",
-                "newWindow": true
             }
         }
     }
