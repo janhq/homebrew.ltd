@@ -7,21 +7,7 @@ import { Cards } from 'nextra/components'
 import { twMerge } from 'tailwind-merge'
 
 const Home = () => {
-    const blogPost = useData()
     const searchParams = useSearchParams()
-    const search = searchParams?.get('category')
-    const router = useRouter()
-
-    const staticCategories = [
-        {
-            name: 'Building Jan',
-            id: 'building-jan',
-        },
-        {
-            name: 'Research',
-            id: 'research',
-        },
-    ]
 
     return (
         <div className="nextra-wrap-container py-14">

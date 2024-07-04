@@ -11,10 +11,10 @@
     "display": "normal",
     "href": "/blog"
   },
-  "building-jan": {
-    "title": "Building Jan",
+  "engineering-cat": {
+    "title": "Engineering",
     "display": "normal",
-    "href": "/blog?category=building-jan"
+    "href": "/blog?category=engineering"
   },
   "research-cat": {
     "title": "Research",
