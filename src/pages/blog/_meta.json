@@ -3,7 +3,8 @@
     "display": "hidden",
     "theme": {
       "breadcrumb": false,
-      "pagination": false
+      "pagination": false,
+      "sidebar": false
     }
   },
   "all-categories": {
