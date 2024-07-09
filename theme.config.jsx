@@ -26,7 +26,7 @@ export default {
     footer: {
         text: (
             <span>
-                Apache 2.0 {new Date().getFullYear()} ©{' '}
+                Copyright {new Date().getFullYear()} ©{' '}
                 <a href="https://nextra.site" target="_blank">
                     Homebrew Computer Company Pte Ltd.
                 </a>
