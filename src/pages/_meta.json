@@ -49,5 +49,9 @@
                 "href": "/handbook/onboarding"
             }
         }
+    },
+    "blog": {
+    "type": "page",
+    "title": "Blog"
     }
 }

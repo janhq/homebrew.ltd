@@ -4,3 +4,12 @@
 
 @import './general.scss';
 @import './fonts.scss';
+
+.logo-mobile {
+    display: flex;
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .logo-mobile {
+        display: none;
+    }
+}
