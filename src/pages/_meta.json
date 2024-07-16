@@ -49,6 +49,7 @@
   },
   "blog": {
     "type": "page",
+    "display": "hidden",
     "title": "Blog"
   }
 }

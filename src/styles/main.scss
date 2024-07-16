@@ -1,15 +1,37 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import './general.scss';
-@import './fonts.scss';
+@import "./general.scss";
+@import "./fonts.scss";
 
 .logo-mobile {
-    display: flex;
+  display: flex;
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .logo-mobile {
-        display: none;
-    }
+  .logo-mobile {
+    display: none;
+  }
+}
+
+.nx-max-w-6xl {
+  @apply max-w-3xl;
+}
+
+.nextra-menu-desktop {
+  display: none;
+}
+
+.nextra-search {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PPEditorialNew";
+  font-weight: 500 !important;
 }
