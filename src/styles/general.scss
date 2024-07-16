@@ -2,6 +2,12 @@
   body {
     @apply antialiased;
     font-size: 16px;
+
+    p,
+    li,
+    span {
+      @apply text-black/80 dark:text-white/80;
+    }
   }
 
   button {
@@ -22,10 +28,8 @@
   .card-wrapper {
     border-radius: 16px;
     background: linear-gradient(180deg, #fafafa 0%, #ededed 100%);
-    box-shadow:
-      0px 4px 12px 0px rgba(0, 0, 0, 0.12),
-      0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset,
-      0px 1px 1px 0px #fff inset;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.12),
+      0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px 1px 1px 0px #fff inset;
   }
 
   .card-wrapper-dark {
@@ -38,10 +42,8 @@
         rgba(121, 119, 128, 0.33) 100%
       )
     );
-    box-shadow:
-      0px 4px 12px 0px rgba(0, 0, 0, 0.12),
-      0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset,
-      0px 0.2px 1px 0px #fff inset;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.12),
+      0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px 0.2px 1px 0px #fff inset;
   }
 
   // tweaks some class nextra
@@ -66,5 +68,4 @@
   .nextra-wrap-container {
     @apply mx-auto max-w-[90rem] pl-[max(env(safe-area-inset-left),1.5rem)] pr-[max(env(safe-area-inset-right),1.5rem)];
   }
-
 }

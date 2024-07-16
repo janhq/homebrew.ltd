@@ -28,13 +28,13 @@ const Blog = () => {
             return (
               <Link href={String(post.url)} key={i}>
                 <div className="py-6">
-                  <h6 className="text-lg line-clamp-1 font-medium font-sans">
+                  <h6 className="text-lg line-clamp-1 font-medium font-sans text-black/80 dark:text-white/80">
                     {post.title}
                   </h6>
-                  <p className="my-2 text-black/70 dark:text-white/70 line-clamp-2 leading-relaxed text-sm">
+                  <p className="my-2 line-clamp-2 leading-relaxed text-sm">
                     {post.description}
                   </p>
-                  <p className="font-medium text-black/70 dark:text-white/70 text-sm">
+                  <p className="font-medium text-sm">
                     {format(String(post.date), "MMMM do, yyyy")}
                   </p>
                   <p className="dark:text-blue-400 text-blue-600 line-clamp-2 font-medium mt-4 text-sm">
