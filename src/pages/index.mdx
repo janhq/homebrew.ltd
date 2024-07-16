@@ -3,13 +3,46 @@ title : Home
 ---
 
 import Blog from "@/components/Blog"
-import Home from "@/components/Home"
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { format } from 'date-fns'
+import { FaDiscord } from 'react-icons/fa'
+import { formatCompactNumber } from '@/utils/format'
 
-<Home/>
+<br/>
+
+# Homebrew
+
+Homebrew is a AI Research Lab. Our mission is to build 
+human-augmenting AIs that are trained sustainably 
+and run energy-efficiently. 
+
+We are the creators and lead maintainers of: 
+
+- [Jan](https://jan.ai): Personal AI (>1 million downloads)
+- [Cortex](https://cortex.so): Modular AI Engine
+- Xanadu: GPU Cluster `coming soon`
+- Menlo: AI Cloud & Hardware `coming soon`
+
+We also train models:
+
+- llama3-s
+
+We are a remote-first lab, with datacenters 
+in Hanoi, Taiwan, and Singapore.
+
+<a
+  href="https://discord.gg/FTk2MvZwJH"
+  target="_blank"
+  className="bg-[#5765F2] inline-flex px-4 py-3 rounded-lg mt-8 cursor-pointer justify-center items-start space-x-2 text-white"
+>
+  <FaDiscord className="text-2xl text-white" />
+  <div>
+    <p className="text-base font-sans text-white font-medium">Join our Discord</p>
+  </div>
+</a>
+
 <Blog/>
 
 export const getStaticProps = async() => {

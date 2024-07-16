@@ -1,35 +1,35 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: 'selector',
+  darkMode: "selector",
 
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './theme.config.tsx',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./theme.config.jsx",
   ],
   theme: {
     container: {
       center: true,
-      padding: '16px',
+      padding: "16px",
     },
     fontFamily: {
       sans: [
-        'Inter',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'Segoe UI',
-        'Roboto',
-        'Oxygen-Sans',
-        'Ubuntu,Cantarell',
-        'Helvetica',
-        'sans-serif',
+        "Inter",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Oxygen-Sans",
+        "Ubuntu,Cantarell",
+        "Helvetica",
+        "sans-serif",
       ],
-      serif: ['PPEditorialNew'],
+      serif: ["PPEditorialNew"],
     },
     extend: {},
   },
   plugins: [],
-}
-export default config
+};
+export default config;
