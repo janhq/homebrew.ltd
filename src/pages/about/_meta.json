@@ -1,0 +1,21 @@
+{
+  "about-separator": {
+    "title": "About Us",
+    "type": "separator"
+  },
+  "index": "About",
+  "vision": {
+    "title": "Vision",
+    "display": "hidden"
+  },
+  "team": "Team",
+  "investors": "Investors",
+
+  "acknowledgements": {
+    "display": "hidden"
+  },
+  "handbook-separator": {
+    "title": "Team Handbook",
+    "type": "separator"
+  }
+}

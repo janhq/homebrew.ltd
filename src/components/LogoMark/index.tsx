@@ -1,10 +1,10 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 type Props = {
-  width?: number
-  height?: number
-  className?: string
-}
+  width?: number;
+  height?: number;
+  className?: string;
+};
 
 export default function LogoMark({ width = 24, height = 24 }: Props) {
   return (
@@ -12,8 +12,8 @@ export default function LogoMark({ width = 24, height = 24 }: Props) {
       width={width}
       height={height}
       className="w-6 h-6"
-      src="/logo-homebrew.svg"
+      src="/logos/homebrew.svg"
       alt="Jan - Logo"
     />
-  )
+  );
 }

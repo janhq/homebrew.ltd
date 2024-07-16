@@ -1,4 +1,5 @@
 {
-    "benchmarking-nvidia-tensorrt-llm": "Benchmarking Nvidia TensorRT-LLM",
-    "bitdefender": "Postmortem: Bitdefender False Positive"
+  "*": {
+    "type": "page"
+  }
 }

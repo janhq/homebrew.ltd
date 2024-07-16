@@ -1,6 +1,6 @@
 import { useData } from "nextra/data";
 import { format } from "date-fns";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import Link from "next/link";
 
@@ -8,7 +8,6 @@ const Blog = () => {
   const blogPost = useData();
   const searchParams = useSearchParams();
   const search = searchParams?.get("category");
-  const router = useRouter();
 
   return (
     <div className="py-14">
@@ -27,18 +26,12 @@ const Blog = () => {
           .map((post: BlogPostsThumbnail, i: number) => {
             return (
               <Link href={String(post.url)} key={i}>
-                <div className="py-6">
-                  <h6 className="text-lg line-clamp-1 font-medium font-sans text-black/80 dark:text-white/80">
+                <div className="py-4 border-b dark:border-gray-600 border-[#F0F0F0] flex justify-between items-center">
+                  <h6 className="text-base line-clamp-1 font-sans text-black/70 dark:text-white/70">
                     {post.title}
                   </h6>
-                  <p className="text-xs font-medium mt-1">
+                  <p className="text-sm font-medium text-black/60 dark:text-white/60">
                     {format(String(post.date), "MMMM do, yyyy")}
-                  </p>
-                  <p className="my-2 line-clamp-2 leading-relaxed text-sm">
-                    {post.description}
-                  </p>
-                  <p className="dark:text-blue-400 text-blue-600 line-clamp-2 font-medium mt-4 text-sm">
-                    Read more...
                   </p>
                 </div>
               </Link>

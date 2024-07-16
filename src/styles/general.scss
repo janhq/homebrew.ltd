@@ -2,11 +2,10 @@
   body {
     @apply antialiased font-sans;
     font-size: 16px;
-
     p,
     li,
     span {
-      @apply text-black/80 dark:text-white/80;
+      @apply text-black/70 dark:text-white/70;
     }
   }
 
