@@ -31,11 +31,11 @@ const Blog = () => {
                   <h6 className="text-lg line-clamp-1 font-medium font-sans text-black/80 dark:text-white/80">
                     {post.title}
                   </h6>
+                  <p className="text-xs font-medium mt-1">
+                    {format(String(post.date), "MMMM do, yyyy")}
+                  </p>
                   <p className="my-2 line-clamp-2 leading-relaxed text-sm">
                     {post.description}
-                  </p>
-                  <p className="font-medium text-sm">
-                    {format(String(post.date), "MMMM do, yyyy")}
                   </p>
                   <p className="dark:text-blue-400 text-blue-600 line-clamp-2 font-medium mt-4 text-sm">
                     Read more...

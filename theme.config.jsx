@@ -1,6 +1,9 @@
 import FooterMenu from "@/components/FooterMenu";
 import Logo from "./public/logo-homebrew.svg";
 import Image from "next/image";
+import { AiOutlineGithub } from "react-icons/ai";
+import { BiLogoDiscordAlt } from "react-icons/bi";
+import { RiTwitterXFill } from "react-icons/ri";
 
 export default {
   logo: (
@@ -18,11 +21,38 @@ export default {
       </span>
     </>
   ),
-  project: {
-    link: "https://github.com/janhq",
-  },
-  chat: {
-    link: "https://discord.gg/VSbRN3vwCD",
+  // project: {
+  //   link: "https://github.com/janhq",
+  // },
+  // chat: {
+  //   link: "https://discord.gg/VSbRN3vwCD",
+  // },
+  navbar: {
+    extraContent: (
+      <div className="flex items-center space-x-2">
+        <a
+          href="https://discord.com/invite/FTk2MvZwJH"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <BiLogoDiscordAlt className="text-xl text-black/60 dark:text-white/60" />
+        </a>
+        <a
+          href="https://twitter.com/janframework"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <RiTwitterXFill className="text-base text-black/60 dark:text-white/60" />
+        </a>
+        <a
+          href="https://github.com/janhq/jan"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <AiOutlineGithub className="text-xl text-black/60 dark:text-white/60" />
+        </a>
+      </div>
+    ),
   },
   docsRepositoryBase: "https://github.com/janhq/homebrew/tree/main",
   useNextSeoProps() {
