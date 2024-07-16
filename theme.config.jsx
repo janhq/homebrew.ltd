@@ -79,11 +79,7 @@ export default {
     // text: <FooterMenu />,
     text: (
       <span>
-        ©{new Date().getFullYear()}{" "}
-        <a href="https://nextra.site" target="_blank">
-          Homebrew Computer Company
-        </a>
-        .
+        ©{new Date().getFullYear()} <span>Homebrew Computer Company</span>.
       </span>
     ),
   },
