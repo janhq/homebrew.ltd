@@ -26,10 +26,11 @@ const Blog = () => {
           .map((post: BlogPostsThumbnail, i: number) => {
             return (
               <Link href={String(post.url)} key={i}>
-                <div className="py-4 border-b dark:border-gray-600 border-[#F0F0F0] flex justify-between items-center">
+                <div className="py-4 flex justify-between items-center gap-x-4">
                   <h6 className="text-base line-clamp-1 font-sans text-black/70 dark:text-white/70">
                     {post.title}
                   </h6>
+                  <div className="border-b w-full flex-1 dark:border-gray-600 border-[#F0F0F0]" />
                   <p className="text-sm font-medium text-black/60 dark:text-white/60">
                     {format(String(post.date), "MMMM do, yyyy")}
                   </p>
