@@ -27,7 +27,7 @@ const config: Config = {
         "sans-serif",
       ],
       serif: [
-        "ui-serif",
+        "PPEditorialNew",
         "Georgia",
         "Cambria",
         "Times New Roman",
