@@ -3,6 +3,7 @@ title : Home
 ---
 
 import Blog from "@/components/Blog"
+import ShimmerButton from "@/components/ShimmerButton"
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -22,26 +23,21 @@ We are the creators and lead maintainers of:
 
 - [Jan](https://jan.ai): Personal AI (>1 million downloads)
 - [Cortex](https://cortex.so): Modular AI Engine
-- Xanadu: GPU Cluster `coming soon`
-- Menlo: AI Cloud & Hardware `coming soon`
+- Xanadu: GPU Cluster <span className="rounded-md py-1 px-2 bg-yellow-200 border border-yellow-400 text-yellow-700 dark:bg-yellow-200 dark:text-yellow-700 text-xs">coming soon</span>
+- Menlo: AI Cloud & Hardware <span className="rounded-md py-1 px-2 bg-yellow-200 border border-yellow-400 text-yellow-700 dark:bg-yellow-200 dark:text-yellow-700 text-xs">coming soon</span>
 
 We also train models:
 
 - llama3-s
 
-We are a remote-first lab, with datacenters 
-in Hanoi, Taiwan, and Singapore.
+We are a remote-first lab, with locations in Hanoi, Taiwan, and Singapore.
 
-<a
-  href="https://discord.gg/FTk2MvZwJH"
-  target="_blank"
-  className="bg-[#5765F2] inline-flex px-4 py-3 rounded-lg mt-8 cursor-pointer justify-center items-start space-x-2 text-white"
->
+<ShimmerButton className="shadow-2xl shadow-[#5765F2] mt-8 flex gap-2 transition-all hover:scale-105" background="#5765F2" onClick={() => window.open('https://discord.gg/FTk2MvZwJH', '_blank')}>
   <FaDiscord className="text-2xl text-white" />
   <div>
     <p className="text-base font-sans text-white font-medium">Join our Discord</p>
   </div>
-</a>
+</ShimmerButton>
 
 <Blog/>
 

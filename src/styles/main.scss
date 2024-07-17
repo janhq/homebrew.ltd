@@ -3,7 +3,6 @@
 @import "tailwindcss/utilities";
 
 @import "./general.scss";
-@import "./fonts.scss";
 
 .logo-mobile {
   display: flex;
@@ -19,20 +18,12 @@
   @apply max-w-3xl;
 }
 
-// .nextra-menu-desktop {
-//   display: none;
-// }
-
-// .nextra-search {
-//   display: none;
-// }
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "PPEditorialNew";
+  @apply font-serif;
   font-weight: 500 !important;
 }
