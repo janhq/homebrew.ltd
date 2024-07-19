@@ -3,10 +3,20 @@ import { AiOutlineGithub } from "react-icons/ai";
 import { BiLogoDiscordAlt } from "react-icons/bi";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa";
-import { useRouter } from "next/router";
+import ThemeImage from "@/components/ThemeImage";
 
 export default {
-  logo: <span className="text-4xl">🤘</span>,
+  logo: (
+    <ThemeImage
+      source={{
+        light: "/logos/homebrew.svg",
+        dark: "/logos/homebrew.svg",
+      }}
+      alt="Logo Homebrew"
+      width={32}
+      height={32}
+    />
+  ),
   navbar: {
     extraContent: (
       <div className="flex items-center space-x-2">
@@ -65,7 +75,6 @@ export default {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="Homebrew" />
       <meta property="og:description" content="Open Source, AI R&D Lab" />
-      <link rel="icon" href="/logos/homebrew.svg" type="image/svg" />
     </>
   ),
   navigation: {
