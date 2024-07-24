@@ -19,13 +19,13 @@ export default {
   ),
   navbar: {
     extraContent: (
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-4">
         <a
           href="https://discord.com/invite/FTk2MvZwJH"
           target="_blank"
           className="cursor-pointer"
         >
-          <BiLogoDiscordAlt className="text-xl text-black/60 dark:text-white/60" />
+          <BiLogoDiscordAlt className="text-xl text-black/60 dark:text-white/60 ml-4" />
         </a>
         <a
           href="https://twitter.com/janframework"
