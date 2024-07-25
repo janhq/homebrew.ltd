@@ -5,12 +5,10 @@
   },
   "index": "About",
   "vision": {
-    "title": "Vision",
-    "display": "hidden"
+    "title": "Vision"
   },
   "team": "Team",
   "investors": "Investors",
-
   "acknowledgements": {
     "display": "hidden"
   },
