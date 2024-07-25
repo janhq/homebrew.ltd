@@ -17,6 +17,9 @@ export default {
       height={32}
     />
   ),
+  search: {
+    placeholder: "Search...",
+  },
   navbar: {
     extraContent: (
       <div className="flex items-center space-x-4">
