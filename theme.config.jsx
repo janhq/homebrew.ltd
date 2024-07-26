@@ -1,9 +1,21 @@
+import JSONLD from "@/components/JSONLD";
 import Image from "next/image";
 import { AiOutlineGithub } from "react-icons/ai";
 import { BiLogoDiscordAlt } from "react-icons/bi";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa";
 import ThemeImage from "@/components/ThemeImage";
+
+const defaultUrl = "https://homebrew.ltd";
+const defaultImage = "https://homebrew.ltd/assets/images/general/og-image.png";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Homebrew",
+  url: `${defaultUrl}`,
+  logo: `${defaultImage}`,
+};
 
 export default {
   logo: (
@@ -78,6 +90,11 @@ export default {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="Homebrew" />
       <meta property="og:description" content="Open Source, AI R&D Lab" />
+      <meta
+        property="og:image"
+        content="https://homebrew.ltd/assets/images/general/og-image.png"
+      />
+      <JSONLD data={structuredData} />
     </>
   ),
   navigation: {
