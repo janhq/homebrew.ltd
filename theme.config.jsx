@@ -43,14 +43,14 @@ export default {
           <BiLogoDiscordAlt className="text-xl text-black/60 dark:text-white/60 ml-4" />
         </a>
         <a
-          href="https://twitter.com/janframework"
+          href="https://twitter.com/homebrewltd"
           target="_blank"
           className="cursor-pointer"
         >
           <RiTwitterXFill className="text-base text-black/60 dark:text-white/60" />
         </a>
         <a
-          href="https://www.linkedin.com/company/janframework/"
+          href="https://www.linkedin.com/company/homebrewltd"
           target="_blank"
           className="cursor-pointer"
         >
