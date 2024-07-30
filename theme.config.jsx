@@ -89,7 +89,10 @@ export default {
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="Homebrew" />
-      <meta property="og:description" content="Open Source, AI R&D Lab" />
+      <meta
+        property="og:description"
+        content="Building human-augmenting AIs that run on energy-efficient hardware."
+      />
       <meta
         property="og:image"
         content="https://homebrew.ltd/assets/images/general/og-image.png"
