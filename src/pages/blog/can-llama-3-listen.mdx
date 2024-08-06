@@ -66,20 +66,18 @@ At [Homebrew Computer Company](https://homebrew.ltd), we like smaller, “edge f
 ![Cascaded systems use 2 models. In addition to latency, emotion, tone, many audio features are lost.](./_assets/llama3s/cascaded-systems.png)
 *Pictured: Cascaded systems use two separate models. In addition to latency, emotion, tone, many audio features are lost.*
 
-Significant research in this space has been on training true multimodal models that natively understand audio tokens and text tokens. (see [Citations](#citations)).
-
 ![Multimodal models natively understand text, audio, image input.](./_assets/llama3s/multimodal-case.png)
 *Pictured: Multimodal models natively understand text, audio, image input.*
 
-Usually, multimodal model training is quite data expensive and compute intensive. 
+Significant research in this space has been on training **multimodal models** that natively understand audio tokens and text tokens (see [Citations](#citations)). 
 
-Our goal is to see what is practically achievable in practice. We employ a unique combination of aforementioned research, and we constrained ourselves to smaller budgeted runs. Hopefully our initial findings below contribute meaningful learnings.
+Usually, this entails pretraining encoders, adapters on large amounts of ASR, AST, synthetic, and human-generated datasets, making the endeavor quite data expensive and compute intensive. 
+
+We wanted to see how far we’d get by just **continuously training llama3 on a small set of synthetic, high quality instruct QA pairs**. Our initial goal is a small, scaling law experiment, where any initial convergence of audio and text tokens could have interesting implications upon larger and more diverse datasets.
 
 ## Training: 19th July Checkpoint
 
-Our initial goal was to do small, scaling law experiment. We wanted to see how far we’d get **continuously training llama3 on a small set of synthetic, high quality instruct QA pairs**. 
-
-Any initial convergence of audio and text tokens would be have interesting scaling law implications, upon larger and more diverse datasets.
+This experiment ended up being quite achievable on a smaller budgeted run. Building on [existing research](#citations), we employed a unique combination of techniques. Hopefully our initial findings below contribute meaningful learnings.
 
 **Data**: For training data, we collated open datasets, consisting of 6 million (15Bn) Q&A text pairs. This was then reduced to 2Mn instruction pairs (4B tokens) through deduping, and filtering for English ([FastText](https://github.com/facebookresearch/fastText)) and token length. We also used additional heuristics based classifiers to filter out bad samples for additional quality. (See [limitations](#current-problems)).
 
