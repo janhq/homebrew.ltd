@@ -14,6 +14,9 @@ const Blog = () => {
       <h2 className="nx-mt-2 nx-text-3xl nx-font-bold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100">
         Blog
       </h2>
+      <p className="text-sm font-medium text-black/30 dark:text-white/30 my-2">
+        {new Date().getFullYear()}
+      </p>
       <div className="w-full mx-auto">
         {blogPost
           .filter((post: BlogPostsThumbnail) => {
@@ -27,12 +30,13 @@ const Blog = () => {
             return (
               <Link href={String(post.url)} key={i}>
                 <div className="py-2 flex justify-between items-center gap-x-4">
-                  <h6 className="text-base font-sans text-gray-600 dark:text-white w-2/6 sm:w-auto !font-normal">
+                  <h6 className="text-base font-sans text-gray-600 dark:text-white !font-normal">
                     {post.title}
                   </h6>
-                  <div className="border-b w-full flex-1 dark:border-gray-600 border-[#F0F0F0]" />
-                  <p className="text-sm font-medium text-black/30 dark:text-white/30">
-                    {format(String(post.date), "MMMM do, yyyy")}
+
+                  <div className="border-b w-[40px] sm:w-full sm:flex-1 dark:border-gray-600 border-[#F0F0F0]" />
+                  <p className="text-sm font-medium text-black/30 dark:text-white/30 w-[60px] sm:w-auto text-right">
+                    {format(String(post.date), "MMM dd")}
                   </p>
                 </div>
               </Link>
