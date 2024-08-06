@@ -30,13 +30,12 @@ const Blog = () => {
             return (
               <Link href={String(post.url)} key={i}>
                 <div className="py-2 flex justify-between items-center gap-x-4">
-                  <div>
-                    <h6 className="text-base font-sans text-gray-600 dark:text-white !font-normal">
-                      {post.title}
-                    </h6>
-                  </div>
-                  <div className="border-b w-[40px] sm:w-full sm:flex-1 dark:border-gray-600 border-[#F0F0F0] -mt-8" />
-                  <p className="text-sm font-medium text-black/30 dark:text-white/30 -mt-8 w-[60px] sm:w-auto text-right">
+                  <h6 className="text-base font-sans text-gray-600 dark:text-white !font-normal">
+                    {post.title}
+                  </h6>
+
+                  <div className="border-b w-[40px] sm:w-full sm:flex-1 dark:border-gray-600 border-[#F0F0F0]" />
+                  <p className="text-sm font-medium text-black/30 dark:text-white/30 w-[60px] sm:w-auto text-right">
                     {format(String(post.date), "MMM dd")}
                   </p>
                 </div>
