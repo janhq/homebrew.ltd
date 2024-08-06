@@ -100,7 +100,7 @@ You can find the datasets here:
 | 📅 2024-07-18 | 🔗 https://huggingface.co/datasets/homebrew-research/instruction-speech-v1.5 | 🔢 800M |
 | 📅 2024-06-30 | 🔗 https://huggingface.co/datasets/homebrew-research/instruction-speech-v1 | 🔢 450M |
 
-**Training**: The instruct tuning was done with fsdp2 ([Torchtune](https://github.com/pytorch/torchtune)) on a [llama3 8b](https://huggingface.co/meta-llama/Meta-Llama-3-8B) base model in FP16. We used the [AdamMini](https://arxiv.org/abs/2406.16793) optimizer, a global batchsize of 128 (mini-batches of 2-4), a 3e-4 learning rate, and a slightly longer warm up ratio. You can find the full steps to reproduce our training here on [Hugging Face](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
+**Training**: The instruct tuning was done with fsdp2 ([Torchtune](https://github.com/pytorch/torchtune)) mixed-precision, on a [llama3 8b](https://huggingface.co/meta-llama/Meta-Llama-3-8B) base model, with the final weights in bf16. We used the [AdamMini](https://arxiv.org/abs/2406.16793) optimizer, a global batchsize of 128 (mini-batches of 2-4), a 3e-4 learning rate, and a slightly longer warm up ratio. You can find the full steps to reproduce our training here on [Hugging Face](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
 
 ![19th July Checkpoint training hyperparams](./_assets/llama3s/training-params.png)
 
@@ -161,7 +161,7 @@ Gasoline is a liquid because it is a mixture of hydrogen and oxygen...
 Gaslow is a city in Scotland...
 ```
 
-**Degradation Evaluation**: We evaluated whether the checkpoint retained original reasoning. 
+**Degradation Evaluation**: We evaluated whether the checkpoint retained original reasoning with 0 shot MMLU.
 
 | Groups | Version | Original | New | Stderr |
 | --- | --- | --- | --- | --- |
