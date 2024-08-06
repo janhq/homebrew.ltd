@@ -4,7 +4,7 @@ authorURL: https://twitter.com/homebrewltd
 description: Homebrew research shares llama3-s, an open & ongoing research experiment to teach llama3 to listen.
 tags: llama3, multimodal, llm, "ai training"
 categories: research
-ogImage: 
+ogImage: /_assets/llama3s/llama-book.png)
 date: 2024-08-06
 ---
 
@@ -43,9 +43,9 @@ In this post, we share results from a [July 19th checkpoint](https://huggingface
 
 **Open Call**
 
-This post is also an open call to llm researchers and audio experts. As a nascent research team, Homebrew is our early days of “throw sh*t at the wall and see what sticks”. 
+This post is also an open call to LLM researchers and audio experts. As a nascent research team, Homebrew is our early days of “throw sh*t at the wall and see what sticks”. 
 
-We openly discuss training recipes in Discord, argue it out, and often run the best ideas next day.
+We openly discuss training recipes in Discord, argue it out, and often run the best ideas the next day.
 
 Join the Discord fun:
 
@@ -79,7 +79,7 @@ We wanted to see how far we’d get by just **continuously training llama3 on a 
 
 This experiment ended up being quite achievable on a smaller budgeted run. Building on [existing research](#citations), we employed a unique combination of techniques. Hopefully our initial findings below contribute meaningful learnings.
 
-**Data**: For training data, we collated open datasets, consisting of 6 million (15Bn) Q&A text pairs. This was then reduced to 2Mn instruction pairs (4B tokens) through deduping, and filtering for English ([FastText](https://github.com/facebookresearch/fastText)) and token length. We also used additional heuristics based classifiers to filter out bad samples for additional quality. (See [limitations](#current-problems)).
+**Data**: For training data, we collated open datasets, consisting of 6 million (15Bn) Q&A text pairs. This was then reduced to 2Mn instruction pairs (4B tokens) through deduping, and filtering for English ([FastText](https://github.com/facebookresearch/fastText)) and token length. We also used additional heuristics-based classifiers to filter out bad samples for additional quality. (See [limitations](#current-problems)).
 
 ![Fig 1. Data tokens length distribution](./_assets/llama3s/no-tokens.png)
 
