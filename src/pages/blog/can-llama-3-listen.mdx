@@ -49,10 +49,9 @@ We openly discuss training recipes in Discord, argue it out, and often run the b
 
 Join the Discord fun:
 
-- [#research-livestream](https://discord.com/invite/FTk2MvZwJH): live training & lo-fi music 😂
+- [#research](https://discord.gg/9NfUSyzp3y) : general research & paper sharing
 - [#llama3-s](https://discord.com/channels/1107178041848909847/1269847858379493442): daily ~~arguments~~ discussions
-- [#research](https://discord.com/invite/FTk2MvZwJH) : general research & paper sharing
-
+- [#research-livestream](https://discord.gg/BmA5DbxeEb): live training & lo-fi music 😂
 
 <Callout>
 At [Homebrew Computer Company](https://homebrew.ltd), we like smaller, “edge friendly” models that are privacy preserving and feasible to train on energy-efficient clusters. Read more about our [AI philosophy here](https://homebrew.ltd/about).
@@ -116,11 +115,7 @@ This checkpoint was evaluated on held-out datasets not overlapping with training
 ![Pictured: checkpoint 7-19 loss curve.](./_assets/llama3s/loss-graph.png)
 *Pictured: checkpoint 7-19 loss curve.*
 
-**Heuristics Evaluation**: We manually evaluated this checkpoint on 100 samples, scoring the model on a basis of: 
-
-- Answers the spoken question: ~9%
-- Somewhat answers the spoken question: ~9%
-- Does not answer the spoken question: ~82%
+**Heuristics Evaluation**: We manually evaluated this checkpoint on 100 samples: 
 
 A good answer from the checkpoint:
 ```yaml
@@ -174,7 +169,7 @@ Gaslow is a city in Scotland...
 | - social sciences | 1 | 0.7413 | 0.2418 | 0.0077 |
 | - stem | 1 | 0.5468 | 0.2448 | 0.0076 |
 
-While this specific checkpoint demonstrated catastrophic forgetting, it has since been addressed. It was a mistake in our tuning parameters, and a 30 July checkpoint with a similar sized training set yielded `0.6137`. 
+While this specific checkpoint demonstrated forgetting, it has since been addressed. It was a mistake in our tuning parameters, and a 30 July checkpoint with a similar sized training set yielded `0.6137`. 
 
 **Results**: 
 
@@ -209,16 +204,11 @@ This 19th July checkpoint had limitations.
 At the moment, we’re working on a new iteration with the following improvements: 
 
 - Retraining phase 1 with llama3.1
-- A more diverse synthetic speech set
+- A more diverse synthetic speech set and encoder
 - Various fixes to hyperparameters, improving degradation
-- Training script optimizations
-- Better benchmarking
+- Training script optimizations and better benchmarking
 
-**Have better ideas? >>>>** Join our training in public.
-
-@Emre Can Kartal >>>> pls add newsletter embed
-
-Reviewed by: can credit community for sharing all those papers & feedback here.
+**Have better ideas?** Join our [training in public](https://discord.gg/VSbRN3vwCD).
 
 ## Citations
 
