@@ -27,7 +27,7 @@ import BlogBackButton from '@/components/Blog/BackButton'
 
 We wanted to share **llama3-s**: an open & ongoing research experiment to teach llama3 to listen.
 
-Inspired by the [Chameleon](https://arxiv.org/pdf/2405.09818) and [Llama Herd](https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.2365-6/452387774_1036916434819166_4173978747091533306_n.pdf?_nc_cat=104&ccb=1-7&_nc_sid=3c67a6&_nc_ohc=DTS7hDTcxZoQ7kNvgGtImML&_nc_ht=scontent.fsgn19-1.fna&oh=00_AYCfz3AvYSlySuuMGJxBHd4rext9iUBKZJjV5gpn91rOGg&oe=66ACDA4D) papers, llama3-s is an early-fusion, audio and text, multimodal model. It is trained in the open, with an open-source [codebase](https://github.com/homebrewltd/llama3-s), [open data](https://huggingface.co/datasets/homebrewltd/instruction-speech-v1.5) and [open weights](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
+Inspired by the [Chameleon](https://arxiv.org/pdf/2405.09818) and [Llama Herd](https://arxiv.org/pdf/2407.21783) papers, llama3-s is an early-fusion, audio and text, multimodal model. It is trained in the open, with an open-source [codebase](https://github.com/homebrewltd/llama3-s), [open data](https://huggingface.co/datasets/homebrewltd/instruction-speech-v1.5) and [open weights](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
 
 At a high level, the approach involves using a sound compressor to create discrete token representations of sound. These are then used to train the LLM. The underlying hypothesis is that these new sound tokens can be continuously learned and existing text-based models can find semantic connections between sound tokens and text representations.
 
@@ -219,7 +219,7 @@ Reviewed by: can credit community for sharing all those papers & feedback here.
 
 ## Citations
 
-- [The Llama 3 Herd of Models](https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.2365-6/452387774_1036916434819166_4173978747091533306_n.pdf?_nc_cat=104&ccb=1-7&_nc_sid=3c67a6&_nc_ohc=DTS7hDTcxZoQ7kNvgGtImML&_nc_ht=scontent.fsgn19-1.fna&oh=00_AYCfz3AvYSlySuuMGJxBHd4rext9iUBKZJjV5gpn91rOGg&oe=66ACDA4D)
+- [The Llama 3 Herd of Models](https://arxiv.org/pdf/2407.21783)
 - [Chameleon: https://arxiv.org/abs/2405.09818](https://arxiv.org/abs/2304.09842)
 - [AudioChatLlama: Towards General-Purpose Speech Abilities for LLMs](https://arxiv.org/pdf/2311.06753)
 - [AudioLM: a Language Modeling Approach to Audio Generation](https://arxiv.org/pdf/2209.03143)
