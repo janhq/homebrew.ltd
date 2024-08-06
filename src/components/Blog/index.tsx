@@ -32,7 +32,7 @@ const Blog = () => {
                   </h6>
                   <div className="border-b w-full flex-1 dark:border-gray-600 border-[#F0F0F0]" />
                   <p className="text-sm font-medium text-black/30 dark:text-white/30">
-                    {format(String(post.date), "MMMM do, yyyy")}
+                    {format(String(post.date), "MMM dd")}
                   </p>
                 </div>
               </Link>
