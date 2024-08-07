@@ -19,7 +19,13 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 
 <BlogAuthors authors={["Alan Dao", "Rex Ha", "Bach Vu", "Phong Tran"]}/>
 
-We invite you to join llama3-s: an open and ongoing research experiment focused on teaching llama3 to listen. This blog post is a quick project update and also an open call to join to us to build a speech adapter on top of llama3.
+<Callout emoji="📚">
+We invite you to join [llama3-s](https://discord.gg/Q7dXd6b9Zb): an open and ongoing research experiment focused on teaching llama3 to listen. This blog post is a quick project update and an open call to join to us to build a speech adapter for open source models.
+</Callout>
+
+Inspired by the [Chameleon](https://arxiv.org/pdf/2405.09818) and [Llama Herd](https://arxiv.org/pdf/2407.21783) papers, llama3-s is an early-fusion, audio and text, multimodal model. We're conducting this research entirely in the open, with an open-source [codebase](https://github.com/homebrewltd/llama3-s), [open data](https://huggingface.co/datasets/homebrewltd/instruction-speech-v1.5) and [open weights](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
+
+<br></br>
 
 <iframe
     className="w-full aspect-video"
@@ -30,36 +36,12 @@ We invite you to join llama3-s: an open and ongoing research experiment focused 
 ></iframe>
 *Gradio Demo (19 July 2024): the model “listens” to audio files and does text autocompletion*
 
-Inspired by the [Chameleon](https://arxiv.org/pdf/2405.09818) and [Llama Herd](https://arxiv.org/pdf/2407.21783) papers, llama3-s is an early-fusion, audio and text, multimodal model. We're conducting this research entirely in the open, with an open-source [codebase](https://github.com/homebrewltd/llama3-s), [open data](https://huggingface.co/datasets/homebrewltd/instruction-speech-v1.5) and [open weights](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
-
-Our approach involves using a sound compressor to create discrete token representations of sound, which are then used to train the LLM. We hypothesize that these sound tokens can be continuously learned and that existing text-based models can find semantic connections between sound tokens and text representations.
+Our initial approach uses a sound compressor to create discrete token representations of sound, which are then used to train the LLM. We hypothesize that these sound tokens can be continuously learned and that existing text-based models can find semantic connections between sound and text representations.
 
 In this post, we share results from a [July 19th checkpoint](https://huggingface.co/homebrewltd/llama3-s-2024-07-19). We trained llama3 8b on synthetic audio, via a small training run that cost less than $600, yielding interesting results. But this is just the beginning, and we need your expertise and ideas to push this research further.
 
 ![Image Credit: When llama learns to listen by Cary & Kumar](./_assets/llama3s/llama-book.png)
 *Image Credit: When llama learns to listen by Cary & Kumar*
-
----
-
-**Open Call**
-
-We’re calling on LLM researchers and audio experts to collaborate with us. As a nascent research team, Homebrew is our early days of “throw sh*t at the wall and see what sticks”. 
-
-We openly discuss training recipes in Discord, argue it out, and often run the best ideas the next day.
-
-Join the Discord fun:
-
-- [#research](https://discord.gg/9NfUSyzp3y) : general research & paper sharing
-- [#llama3-s](https://discord.com/channels/1107178041848909847/1269847858379493442): daily ~~arguments~~ discussions
-- [#research-livestream](https://discord.gg/BmA5DbxeEb): live training & lo-fi music 😂
-
-We believe that collaborative, open research can accelerate progress in this exciting field. Whether you're an experienced researcher or an enthusiastic newcomer, your contribution could be valuable.
-
-<Callout>
-At [Homebrew Computer Company](https://homebrew.ltd), we like smaller, “edge friendly” models that are privacy preserving and feasible to train on energy-efficient clusters. Read more about our [AI philosophy here](https://homebrew.ltd/about).
-</Callout>
-
----
 
 ## The Problem
 
@@ -220,8 +202,26 @@ At the moment, we’re working on a new iteration with the following improvement
 - [DASB: Discrete Audio and Speech Benchmark](https://arxiv.org/pdf/2406.14294)
 - [Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models](https://arxiv.org/pdf/2311.07919)
 
-Thank you for reading all the way to the end. Here’s a truth potato as a token of our appreciation. 
-![Artist credit: @harshgopal , @[truth.potato](https://www.instagram.com/truth.potato/)](./_assets/llama3s/potatoe.png)
-*Artist credit: @harshgopal , @[truth.potato](https://www.instagram.com/truth.potato/)*
+---
+
+## Open Call
+
+We’re calling on LLM researchers and audio experts to collaborate with us. As a nascent research team, Homebrew is our early days of “throw sh*t at the wall and see what sticks”. 
+
+We openly discuss training recipes in Discord, argue it out, and often run the best ideas the next day.
+
+Join the Discord fun:
+
+- [#research](https://discord.gg/9NfUSyzp3y) : general research & paper sharing
+- [#llama3-s](https://discord.com/channels/1107178041848909847/1269847858379493442): daily ~~arguments~~ discussions
+- [#research-livestream](https://discord.gg/BmA5DbxeEb): live training & lo-fi music 😂
+
+We believe that collaborative, open research can accelerate progress in this exciting field. Whether you're an experienced researcher or an enthusiastic newcomer, your contribution could be valuable.
+
+<Callout>
+At [Homebrew Computer Company](https://homebrew.ltd), we like smaller, “edge friendly” models that are privacy preserving and feasible to train on energy-efficient clusters. Read more about our [AI philosophy here](https://homebrew.ltd/about).
+</Callout>
+
+---
 
 <ResearchCTABlog/>
