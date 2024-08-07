@@ -92,9 +92,9 @@ const BlogAuthors = (props: Props) => {
 
   if (!authors) return null;
 
-  const filteredAuthors = authorList.filter((author) =>
-    authors.includes(author.name)
-  );
+  const filteredAuthors = authorList
+    .filter((author) => authors.includes(author.name))
+    .sort((a, b) => authors.indexOf(a.name) - authors.indexOf(b.name));
 
   return (
     <div className="flex flex-row items-center mt-4 mb-8 w-full">
