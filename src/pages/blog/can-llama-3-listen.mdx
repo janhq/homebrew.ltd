@@ -20,7 +20,7 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 <BlogAuthors authors={["Alan Dao", "Rex Ha", "Bach Vu", "Phong Tran"]}/>
 
 <Callout emoji="📚">
-We invite you to join [llama3-s](https://discord.gg/Q7dXd6b9Zb): an open and ongoing research experiment focused on teaching llama3 to listen. This blog post is a quick project update and an open call to join to us to build a speech adapter for open source models.
+We invite you to join [llama3-s](https://discord.gg/Q7dXd6b9Zb): an open and ongoing research experiment focused on teaching llama3 to listen. This blog post is a quick project update and an open call to join us in building a speech adapter for open-source models.
 </Callout>
 
 Inspired by the [Chameleon](https://arxiv.org/pdf/2405.09818) and [Llama Herd](https://arxiv.org/pdf/2407.21783) papers, llama3-s is an early-fusion, audio and text, multimodal model. We're conducting this research entirely in the open, with an open-source [codebase](https://github.com/homebrewltd/llama3-s), [open data](https://huggingface.co/datasets/homebrewltd/instruction-speech-v1.5) and [open weights](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
@@ -80,9 +80,9 @@ You can find the datasets here:
 
 | Date | HF Checkpoint | Tokens |
 | --- | --- | --- |
-| 📅 2024-07-19 | 🔗 https://huggingface.co/homebrew-research | 🔢 1.35B |
-| 📅 2024-07-18 | 🔗 https://huggingface.co/datasets/homebrew-research/instruction-speech-v1.5 | 🔢 800M |
-| 📅 2024-06-30 | 🔗 https://huggingface.co/datasets/homebrew-research/instruction-speech-v1 | 🔢 450M |
+| 📅 2024-07-19 | 🔗 https://huggingface.co/homebrewltd | 🔢 1.35B |
+| 📅 2024-07-18 | 🔗 https://huggingface.co/datasets/homebrewltd/instruction-speech-v1.55 | 🔢 800M |
+| 📅 2024-06-30 | 🔗 https://huggingface.co/datasets/homebrewltd/instruction-speech-v1 | 🔢 450M |
 
 **Training**: The instruct tuning was done with fsdp2 ([Torchtune](https://github.com/pytorch/torchtune)) mixed-precision, on a [llama3 8b](https://huggingface.co/meta-llama/Meta-Llama-3-8B) base model, with the final weights in bf16. We used the [AdamMini](https://arxiv.org/abs/2406.16793) optimizer, a global batchsize of 128 (mini-batches of 2-4), a 3e-4 learning rate, and a slightly longer warm up ratio. You can find the full steps to reproduce our training here on [Hugging Face](https://huggingface.co/homebrewltd/llama3-s-2024-07-19).
 
