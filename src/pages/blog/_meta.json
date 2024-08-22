@@ -1,5 +1,9 @@
 {
   "*": {
-    "type": "page"
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "pagination": false
+    }
   }
 }
