@@ -1,5 +1,3 @@
-import { exec } from "child_process";
-import isPortReachable from "is-port-reachable";
 import chalk from "chalk";
 
 const capitalize = (str) => {
@@ -9,15 +7,6 @@ const capitalize = (str) => {
 const camelCase = (str) => {
   return str.replace(/[-_](\w)/g, (_, c) => c.toUpperCase());
 };
-
-async function checkIfProjectIsRunning() {
-  try {
-    return await isPortReachable([3000, 3001, 3002], { host: "localhost" });
-  } catch (error) {
-    console.error("Error checking if project is running:", error);
-    return false;
-  }
-}
 
 const authors = [
   "Daniel Onggunhao",
@@ -110,6 +99,7 @@ export default async function (plop) {
       });
 
       console.log(chalk.green(`Your blog post is created!`));
+      console.log(chalk.green(`You can modify under src/pages/blog/${slug}`));
       console.log(
         chalk.cyan(`You can view it at: http://localhost:3000/blog/${slug}`)
       );
