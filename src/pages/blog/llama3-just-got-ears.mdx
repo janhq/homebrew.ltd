@@ -66,7 +66,7 @@ You can learn more about our comparison of semantic and acoustic tokens [here](#
 
 We found it useful to pre-train llama3.1 on continuous speech, through rough ablation experimentation. This enhanced llama3’s ability to generalize across semantic tokens.
 
-**Data**: We used the [MLS-10k dataset](https://huggingface.co/datasets/parler-tts/mls_eng_10k) (10 hours of unlabeled, multilingual human speech courtesy of OpenSLR) to pre-train llama3.1 8b on next token prediction. 
+**Data**: We used the [MLS-10k dataset](https://huggingface.co/datasets/parler-tts/mls_eng_10k) (10 hours of unlabeled, multilingual human speech courtesy of OpenSLR) to pre-train llama3.1 8b on next token prediction ([code here](https://huggingface.co/homebrewltd/llama3.1-s-base-v0.2/blob/main/training_config.yaml)). 
 
 ![pretrain](./_assets/llama3sv0.2/pretrain.png)
 
