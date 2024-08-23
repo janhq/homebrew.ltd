@@ -1,4 +1,7 @@
+import React, { Fragment } from "react";
 import JSONLD from "@/components/JSONLD";
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
 import Image from "next/image";
 import { AiOutlineGithub } from "react-icons/ai";
 import { BiLogoDiscordAlt } from "react-icons/bi";
@@ -85,21 +88,56 @@ export default {
       titleTemplate: "%s – Homebrew",
     };
   },
-  head: (
-    <>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:title" content="Homebrew" />
-      <meta
-        property="og:description"
-        content="Building human-augmenting AIs that run on energy-efficient hardware."
-      />
-      <meta
-        property="og:image"
-        content="https://homebrew.ltd/assets/images/general/og-image.png"
-      />
-      <JSONLD data={structuredData} />
-    </>
-  ),
+  head: function useHead() {
+    const { title, frontMatter } = useConfig();
+    const titleTemplate = (frontMatter?.title || title) + " - " + "Homebrew";
+    const { asPath } = useRouter();
+
+    return (
+      <Fragment>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Language" content="en" />
+        <title>{titleTemplate}</title>
+        <meta name="og:title" content={titleTemplate} />
+        <meta
+          name="description"
+          content={
+            frontMatter?.description ||
+            `Building human-augmenting AIs that run on energy-efficient hardware.`
+          }
+        />
+        <meta
+          name="og:description"
+          content={
+            frontMatter?.description ||
+            `Run LLMs like Mistral or Llama2 locally and offline on your computer, or connect to remote AI APIs like OpenAI’s GPT-4 or Groq.`
+          }
+        />
+        <link
+          rel="canonical"
+          href={
+            frontMatter?.ogImage ? "https://homebrew.ltd/" + asPath : defaultUrl
+          }
+        />
+        <meta
+          property="og:url"
+          content={
+            frontMatter?.ogImage ? "https://homebrew.ltd/" + asPath : defaultUrl
+          }
+        />
+        <meta
+          property="og:image"
+          content={
+            frontMatter?.ogImage
+              ? "https://homebrew.ltd/" + frontMatter?.ogImage
+              : "https://homebrew.ltd/assets/images/general/og-image.png"
+          }
+        />
+        <meta property="og:image:alt" content="Jan-OGImage" />
+        <JSONLD data={structuredData} />
+      </Fragment>
+    );
+  },
   navigation: {
     prev: true,
     next: true,
