@@ -17,7 +17,7 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 
 # Llama3 just got ears
 
-We’re excited to share [llama3s v0.2](https://huggingface.co/homebrewltd/Llama3.1-s-instruct-2024-08-19-epoch-3), our latest multimodal checkpoint with improved speech understanding.
+We’re excited to share [llama3-s v0.2](https://huggingface.co/homebrewltd/Llama3.1-s-instruct-2024-08-19-epoch-3), our latest multimodal checkpoint with improved speech understanding.
 
 ## Demo
 <iframe
@@ -29,7 +29,7 @@ We’re excited to share [llama3s v0.2](https://huggingface.co/homebrewltd/Llama
 ></iframe>
 *A realtime demo of Llama3-Speech (23th Aug 2024 checkpoint): the MLLM listens to human speech and responds in text*
 
-**Llama3s v0.2 consistently performs across multiple `Speech Understanding` benchmarks** (see [Results](#results)). While more analysis is needed, we’re excited to share this progress with the community and get feedback. 
+**Llama3-s v0.2 consistently performs across multiple `Speech Understanding` benchmarks** (see [Results](#results)). While more analysis is needed, we’re excited to share this progress with the community and get feedback. 
 
 **You can try it for yourself:**
 - Via our [self-hosted demo here](https://demo.homebrew.ltd/)*
@@ -48,7 +48,7 @@ This post shares results and methodology behind an Aug 20th checkpoint. As alway
 
 ## Architecture
 
-In a [previous post](https://homebrew.ltd/blog/can-llama-3-listen), we shared [llama3s v0.1](https://huggingface.co/homebrewltd/llama3-s-2024-07-19), an early-fusion experiment where we instruct-tuned llama3 on [encodec’s](https://github.com/facebookresearch/encodec) acoustic tokens [fig 1]. While we observed some transitivity between the LLM’s text and new audio tokens, there were imminent limitations like the lack of generalization to non-synthetic voices, among [other issues](https://homebrew.ltd/blog/can-llama-3-listen#current-problems).
+In a [previous post](https://homebrew.ltd/blog/can-llama-3-listen), we shared [llama3-s v0.1](https://huggingface.co/homebrewltd/llama3-s-2024-07-19), an early-fusion experiment where we instruct-tuned llama3 on [encodec’s](https://github.com/facebookresearch/encodec) acoustic tokens [fig 1]. While we observed some transitivity between the LLM’s text and new audio tokens, there were imminent limitations like the lack of generalization to non-synthetic voices, among [other issues](https://homebrew.ltd/blog/can-llama-3-listen#current-problems).
 
 ![acoustic](./_assets/llama3sv0.2/acoustic.png)
 *Fig 1. our previous acoustic tokens early-fusion experiment*
@@ -56,7 +56,7 @@ In a [previous post](https://homebrew.ltd/blog/can-llama-3-listen), we shared [l
 ![semantic](./_assets/llama3sv0.2/semantic.png)
 *Fig 2: the current approach is early-fusion with semantic tokens*
 
-**For llama3s v0.2, we adapted llama3.1 using early-fusion with semantic tokens**, inspired by community [feedback](https://www.reddit.com/r/LocalLLaMA/comments/1emjyq0/comment/lgzm5ap/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) [fig 2]. Our goal is to leverage the benefits of semantic tokens, such as simplicity, better compression, and consistent speech-feature extraction, as demonstrated by [WhisperVQ](https://huggingface.co/WhisperSpeech/WhisperSpeech/blob/main/whisper-vq-stoks-medium-en%2Bpl.model). We can always scale up to a hybrid approach and reintroduce acoustic features as needed, given more data and compute resources. 
+**For llama3-s v0.2, we adapted llama3.1 using early-fusion with semantic tokens**, inspired by community [feedback](https://www.reddit.com/r/LocalLLaMA/comments/1emjyq0/comment/lgzm5ap/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) [fig 2]. Our goal is to leverage the benefits of semantic tokens, such as simplicity, better compression, and consistent speech-feature extraction, as demonstrated by [WhisperVQ](https://huggingface.co/WhisperSpeech/WhisperSpeech/blob/main/whisper-vq-stoks-medium-en%2Bpl.model). We can always scale up to a hybrid approach and reintroduce acoustic features as needed, given more data and compute resources. 
 
 You can learn more about our comparison of semantic and acoustic tokens [here](#acoustic-v-semantic).
 
@@ -144,7 +144,7 @@ We found epoch 3 to be performant and is our current demo checkpoint.
 | [**Llama3.1-s-v2-epoch-4**](https://huggingface.co/homebrewltd/Llama3.1-s-instruct-2024-08-19-epoch-4) | 3.47 | 2.93 | 60.05% |
 | [**Llama3.1-s-v2-epoch-5**](https://huggingface.co/homebrewltd/Llama3.1-s-instruct-2024-08-19-epoch-5) | 3.34 | 3.01 | 69.07% |
 
-Our training dataset didn’t contain Alpaca Instruction. At epoch 3, **llama3s v.02 achieved an average score of 3.53 on the ALPACA-Audio eval**, which seems to beat SALMONN, Qwen-Audio and WavLLM.
+Our training dataset didn’t contain Alpaca Instruction. At epoch 3, **llama3-s v.02 achieved an average score of 3.53 on the ALPACA-Audio eval**, which seems to beat SALMONN, Qwen-Audio and WavLLM.
 
 ![audiobench](./_assets/llama3sv0.2/audiobench.png)
 *Fig 3: SOTA models evaluated on AudioBench*
@@ -180,7 +180,7 @@ For now, our next steps are as follows:
 - Establishing cascaded system baseline benchmarks to evaluate computational and latency improvements
 - Exploring other model architectures that are more efficient
 
-**Long term, we aim to develop an open, multi-turn speech model for llama3s that excels in low-resource languages, with a focus on improving generalization across ASEAN's diverse accents and dialects.** Achieving this will necessitate a significant and sustained data collection effort.
+**Long term, we aim to develop an open, multi-turn speech model for llama3-s that excels in low-resource languages, with a focus on improving generalization across ASEAN's diverse accents and dialects.** Achieving this will necessitate a significant and sustained data collection effort.
 
 ## Acoustic v Semantic
 
