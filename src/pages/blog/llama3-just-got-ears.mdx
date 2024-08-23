@@ -20,19 +20,25 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 We’re excited to share [llama3s v0.2](https://huggingface.co/homebrewltd/Llama3.1-s-instruct-2024-08-19-epoch-3), our latest multimodal checkpoint with improved speech understanding.
 
 ## Demo
-
 <iframe
     className="w-full aspect-video"
-    src={`https://www.youtube.com/embed/QMRIaWIC5AA`}
+    src={`https://www.youtube.com/embed/VnuFvCjoxXk`}
     title="YouTube Video"
     frameBorder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 ></iframe>
-*[HF demo](https://huggingface.co/spaces/jan-hq/Llama3.1-s-v0.2-checkpoint-2024-08-20) (20th Aug 2024): the model listens to human instructions and responds in text.*
+*A realtime demo of Llama3-Speech (23th Aug 2024 checkpoint): the MLLM listens to human speech and responds in text*
 
 **Llama3s v0.2 consistently performs across multiple `Speech Understanding` benchmarks** (see [Results](#results)). While more analysis is needed, we’re excited to share this progress with the community and get feedback. 
 
-**You can try the [demo here](https://huggingface.co/spaces/jan-hq/Llama3.1-s-v0.2-checkpoint-2024-08-20) or [build it from scratch](https://github.com/homebrewltd/llama3-s)**. For this round, please ask questions in English and keep them under 10 seconds long. This is due to our model's limitation in being trained on audio prompts with fewer than 500 tokens, which we plan to address in a future update.
+**You can try it for yourself:**
+- Via our [self-hosted demo here](https://demo.homebrew.ltd/)*
+- Via [Hugging Face demo here](https://huggingface.co/spaces/jan-hq/Llama3.1-s-v0.2-checkpoint-2024-08-20)*
+- [Build it from scratch](https://github.com/homebrewltd/llama3-s)
+
+_*Inference may slow/queued due to shared compute_
+
+_*For this round, please ask questions in English and keep them under 10 seconds long. This is due to our model's limitation in being trained on audio prompts with fewer than 500 tokens, which we plan to address in a future update._
 
 This post shares results and methodology behind an Aug 20th checkpoint. As always, this is just the beginning, and we need your ideas to push this research further.
 
