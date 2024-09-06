@@ -1,0 +1,27 @@
+---
+title: {{titleCase title}} 
+description: {{description}}
+tags: {{tags}}
+date: {{date}}
+authors: {{authors}}
+authorURL: https://twitter.com/homebrewltd
+categories: research
+ogImage: ''
+---
+
+import { Callout } from 'nextra/components'
+import BlogBackButton from '@/components/Blog/BackButton'
+import BlogAuthors from '@/components/Blog/Authors'
+import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
+
+<BlogBackButton />
+
+# {{capitalize title}} 
+
+<BlogAuthors authors={[{{#each authors}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}]} />
+
+## Start blog content here
+
+
+
+<ResearchCTABlog />
