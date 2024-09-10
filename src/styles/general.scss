@@ -87,4 +87,10 @@ nav {
   a:nth-child(3) {
     margin-right: 16px !important;
   }
+
+  .flex.items-center.space-x-4 {
+    a {
+      margin: 0 8px !important;
+    }
+  }
 }
