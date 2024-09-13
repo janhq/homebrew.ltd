@@ -110,7 +110,7 @@ export default {
           name="og:description"
           content={
             frontMatter?.description ||
-            `Run LLMs like Mistral or Llama2 locally and offline on your computer, or connect to remote AI APIs like OpenAI’s GPT-4 or Groq.`
+            `Homebrew is an AI R&D studio that works in the area of Local AI, Small Language Models and Multi-modality. `
           }
         />
         <link
