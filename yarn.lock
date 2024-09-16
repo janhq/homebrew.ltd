@@ -39,6 +39,11 @@
     "@code-hike/lighter" "0.7.0"
     node-fetch "^2.0.0"
 
+"@fillout/react@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@fillout/react/-/react-1.1.2.tgz#833c28aa53aa79a712b61e915e3fc710312f02f9"
+  integrity sha512-XyzLY74Zhxxwym3A9770Tb3NINwaaWyWwvaw1lMJ5sA/P6hgsdzvefUOqohzR3+KVyspvBOR4BoR0nBMPFd/Vw==
+
 "@headlessui/react@^1.7.17":
   version "1.7.19"
   resolved "https://registry.npmjs.org/@headlessui/react/-/react-1.7.19.tgz"
