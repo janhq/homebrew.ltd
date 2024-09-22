@@ -11,5 +11,10 @@
   "blog": {
     "type": "page",
     "title": "Blog"
+  },
+  "work-with-us": {
+    "type": "page",
+    "title": "Partner",
+    "display": "hidden"
   }
 }

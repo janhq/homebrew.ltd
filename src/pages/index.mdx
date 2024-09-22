@@ -41,12 +41,17 @@ We tinker with hardware:
 
 We are a fully remote team. See [open roles](https://homebrew.bamboohr.com/careers).
 
-<ShimmerButton className="shadow-2xl shadow-[#5765F2] mt-8 flex gap-2 transition-all hover:scale-105" background="#5765F2" onClick={() => window.open('https://discord.gg/FTk2MvZwJH', '_blank')}>
-  <FaDiscord className="text-2xl text-white" />
-  <div>
-    <p className="text-base font-sans text-white font-medium">Join our Discord</p>
-  </div>
-</ShimmerButton>
+<div className="flex flex-col md:flex-row items-start md:items-center mt-8 gap-4">
+  <ShimmerButton className="shadow-2xl shadow-[#5765F2] flex gap-2 transition-all hover:scale-105" background="#5765F2" onClick={() => window.open('https://discord.gg/FTk2MvZwJH', '_blank')}>
+    <FaDiscord className="text-2xl text-white" />
+    <div>
+      <p className="text-base font-sans text-white font-medium">Join our Discord</p>
+    </div>
+  </ShimmerButton>
+  <a className="bg-neutral-100 dark:bg-neutral-700 py-3 px-6 rounded-full border border-neutral-300 dark:border-neutral-600 text-center" href="/work-with-us" >
+    Work with us
+  </a>
+</div>
 
 <Blog/>
 
