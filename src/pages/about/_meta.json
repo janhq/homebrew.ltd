@@ -5,7 +5,8 @@
   },
   "index": "About",
   "vision": {
-    "title": "Vision"
+    "title": "Vision",
+    "display": "hidden"
   },
   "team": "Team",
   "investors": "Investors",
