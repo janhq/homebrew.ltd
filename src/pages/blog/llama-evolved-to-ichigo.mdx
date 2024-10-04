@@ -109,7 +109,7 @@ Spoiler alert: We recovered MMLU performance from 0.42 to 0.63, reducing the deg
 
 **Transcription token:** Previously, we used 513 semantic tokens from WhisperVQ's codebook, 2 special tokens for sound input boundaries, and 1 special token for transcription tasks. However, we discovered that the transcription token hindered model recovery.
 
-Our solution:
+**Our solution:**
 
 - Replaced the single transcription token with six diverse prompts
 - This approach improved the model's ability to map sound token patterns to corresponding text.
