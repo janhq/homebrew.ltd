@@ -118,10 +118,10 @@ Spoiler alert: We recovered MMLU performance from 0.42 to **0.63**, reducing the
 | --- | --- | --- | --- | --- | --- | --- |
 | Test 1: Early Pretrain Recovery | 3,000 steps | 500k mixed | ✅ | ✅ | ❌ | 0.55 |
 | Test 2: Late Pretrain Recovery | Last | 500k mixed | ✅ | ✅ | ❌ | 0.515 |
-| Test 3: Late Pretrain Recovery with Transcription | Last | 500k mixed | ✅ | ✅ | ✅
-(With transcription token) | 0.48 |
-| Test 4: Extended Late Pretrain Recovery | Last | 1.89M mixed | ✅ | ✅ | ✅
-(With transcription prompts) | 0.61 |
+| Test 3: Late Pretrain Recovery with Transcription (With transcription token) | Last | 500k mixed | ✅ | ✅ | ✅
+ | 0.48 |
+| Test 4: Extended Late Pretrain Recovery (With transcription prompts) | Last | 1.89M mixed | ✅ | ✅ | ✅
+ | 0.63 |
 
 **Mixed training data between modalities:** We determined an optimal interleaving of different data types with 70% speech instruction prompts, 20% speech transcription prompts and 10% text-only prompts.
 
