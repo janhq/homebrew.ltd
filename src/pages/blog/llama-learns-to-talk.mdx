@@ -118,10 +118,8 @@ Spoiler alert: We recovered MMLU performance from 0.42 to **0.63**, reducing the
 | --- | --- | --- | --- | --- | --- | --- |
 | Test 1: Early Pretrain Recovery | 3,000 steps | 500k mixed | ✅ | ✅ | ❌ | 0.55 |
 | Test 2: Late Pretrain Recovery | Last | 500k mixed | ✅ | ✅ | ❌ | 0.515 |
-| Test 3: Late Pretrain Recovery with Transcription | Last | 500k mixed | ✅ | ✅ | ✅
-(With transcription token) | 0.48 |
-| Test 4: Extended Late Pretrain Recovery | Last | 1.89M mixed | ✅ | ✅ | ✅
-(With transcription prompts) | 0.61 |
+| Test 3: Late Pretrain Recovery with Transcription<br>(With transcription token) | Last | 500k mixed | ✅ | ✅ | ✅ | 0.48 |
+| Test 4: Extended Late Pretrain Recovery<br>(With transcription prompts) | Last | 1.89M mixed | ✅ | ✅ | ✅| 0.61 |
 
 **Mixed training data between modalities:** We determined an optimal interleaving of different data types with 70% speech instruction prompts, 20% speech transcription prompts and 10% text-only prompts.
 
@@ -212,9 +210,7 @@ Beyond randomizing sound tokens for inaudible input, we also performed sequence 
 
 **AudioBench Eval**: [AudioBench](https://arxiv.org/abs/2406.16020) is a June 2024 benchmark designed to evaluate audio large language models (AudioLLMs). It measures speech capabilities, in addition to ASR, transcription, etc., through a compilation of many open datasets.
     
-| Model Bench | [Open-hermes Instruction Audio](https://huggingface.co/datasets/AudioLLMs/openhermes_instruction_test)
-(GPT-4-O judge 0:5) | [Alpaca Instruction Audio](https://huggingface.co/datasets/AudioLLMs/alpaca_audio_test)
-(GPT-4-O judge 0:5) |
+| Model Bench | [Open-hermes Instruction Audio](https://huggingface.co/datasets/AudioLLMs/openhermes_instruction_test)<br>(GPT-4-O judge 0:5) | [Alpaca Instruction Audio](https://huggingface.co/datasets/AudioLLMs/alpaca_audio_test)<br>(GPT-4-O judge 0:5) |
 | --- | --- | --- |
 | [Llama3.1-s-v2](https://huggingface.co/homebrewltd/llama3-s-instruct-v0.2) | 3.45 | 3.53 |
 | [Ichigo-llama3.1-s v0.3-phase2 -cp7000](https://huggingface.co/homebrewltd/Ichigo-llama3.1-s-instruct-v0.3-phase-2) | 3.42 | 3.62 |
@@ -243,15 +239,11 @@ For now, our next steps are as follows:
 
 | Task Type | v0.2 | v0.3 |
 | --- | --- | --- |
-| Speech Multi-turn | None | 140K samples: 2 turns
-10K samples >= 4 turns |
+| Speech Multi-turn | None | 140K samples: 2 turns<br>10K samples >= 4 turns |
 | Speech QA | 679K samples | 1.33M samples |
-| Transcription | 250K samples
-(Using a special token) | 400K samples
-(6 different prompts) |
+| Transcription | 250K samples<br>(Using a special token) | 400K samples<br>(6 different prompts) |
 | Noise Audio | None | 8K samples |
-| Text-only | None | 100K samples: multi-turn
-50K samples: single turn |
+| Text-only | None | 100K samples: multi-turn <br> 50K samples: single turn |
 
 **Prompts used for transcription data**
 
