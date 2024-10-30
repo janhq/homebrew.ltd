@@ -1,0 +1,68 @@
+---
+title: Why we're building 🤖 Cortex?
+authorURL: https://twitter.com/homebrewltd
+description: "Cortex might initially appear to be just another LLM distribution package but our plan is more than building a local AI alternative."
+categories: product
+ogImage: assets/eniac_computer.jpg
+date: 2024-10-30
+---
+
+import { Callout } from 'nextra/components'
+import BlogBackButton from '@/components/Blog/BackButton'
+import BlogAuthors from '@/components/Blog/Authors'
+import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
+
+<BlogBackButton />
+
+# Why we're building Cortex?
+
+<BlogAuthors authors={["Emre"]}/>
+
+ We launched [🤖 Cortex](https://github.com/janhq/cortex.cpp), a local AI API Platform that allows people to run and customize models locally. It might initially appear to be just another LLM distribution package but our plan is more than building a local AI alternative to the OpenAI API Platform.
+## Cortex and related links
+<iframe
+    className="w-full aspect-video"
+    src={`https://www.youtube.com/embed/dvmZ-HpcZ38`}
+    title="YouTube Video"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+></iframe>
+
+- Give it a try: https://cortex.so/
+- Source Code: https://github.com/janhq/cortex.cpp
+- API Reference: https://cortex.so/api-reference/
+- Community: https://discord.gg/Exe46xPMbK
+
+## Fundamental Walls
+
+The interesting part is what it represents. When we were building [Jan](https://jan.ai/) (it is also our previous company name), we kept hitting walls. Not software walls, but fundamental ones - hardware constraints, model limitations, integration challenges. That's when we realized we needed to become a full-stack AI company. Hence, 🖖 Homebrew.
+
+Cortex is our experiment to build a brain. It's a standalone product and powers [Jan](https://github.com/janhq/cortex.cpp), making models run faster and more stable. But that's just the start. We want Cortex to be the brain you can put anywhere - from robots to coffee makers. No cloud dependencies. No remote servers. Just AI running directly on hardware.
+
+### A glue for AI future
+The reason this matters is that whoever controls AI infrastructure controls AI's future. If we want AI to stay open and accessible, we need strong open-source alternatives. Not just in software, but all the way down to how models run on hardware. This may turn out to be wrong. But it feels like the right kind of wrong - the kind worth pursuing.
+
+The hardest problems in AI aren't just about models anymore. They're about integration. You can text model and voice model by using different libraries but multi-modality requires make them work together in a stable way. It's the difference between having parts of a car and having a car that actually drives.
+
+![Car and Engine](/assets/images/og/car-engine-analogy.png)
+*This is a really, really good analogy. [Source](https://www.reddit.com/r/LocalLLaMA/comments/1gd6df6/comment/lu2mjbb/)*
+
+### C++ over Go
+This integration problem shows up everywhere in AI, but most clearly in the mess of libraries needed to make anything work. Want to combine vision and language models? Get ready to juggle five different libraries with conflicting dependencies. The industry treats this as a minor inconvenience, but it's actually a fundamental barrier to progress.
+
+This is why we chose C++ over Go for Cortex. It seems like a small technical decision, but it reflects a deeper truth: being "full-stack" in AI means something different than it did in web development. In web dev, you can get away with different languages and frameworks at different layers. 
+
+In AI, the stack needs to be more cohesive. The overhead of crossing language boundaries becomes a real problem when you're processing gigabytes of data in real time.
+
+### Universal file formats
+You see this pattern again in how AI systems handle model files. Most platforms use simple checksums like SHA256 to identify models. It's the obvious solution - the kind that seems fine until it isn't. But it breaks down as soon as you need to do anything sophisticated with model composition or versioning. It's like trying to build git with just file hashes.
+
+So, our mission is to be a local alternative. We plan Cortex to have a role as the brain of that ecosystem.
+
+<Callout>
+Your feedback is the most critical aspect to make things better. Join our community to share critics with us: https://discord.gg/2mWSNnRd
+</Callout>
+
+---
+
+<ResearchCTABlog/>
