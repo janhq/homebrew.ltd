@@ -22,11 +22,11 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 ## Introduction
 Recent breakthroughs in large language models (LLMs) have demonstrated a fascinating concept: giving models time to think dramatically improves their performance. These "reasoning" models, as they're often called, have achieved remarkable results on complex mathematical benchmarks like [AIME and MATH](cite AIME, MATH). This success isn't limited to massive models like O3-mini and Deepseek-r1; the community has also achieved strong results by fine-tuning smaller, "distilled" models, such as [1.5b](cite deepsclaer) and [7b](cite open-r1) versions.
 
-The core algorithm driving much of this progress is [GRPO (Generalized Reinforcement Learning with Policy Optimization)](cite deepseek-r1). GRPO is an online learning method, meaning it constantly refines the model using data generated during the training process itself. It's a powerful way to iteratively improve performance.
+The core algorithm driving much of this progress is [GRPO](https://arxiv.org/pdf/2402.03300) (Group Relative Policy Optimization). GRPO is an online learning method, meaning it constantly refines the model using data generated during the training process itself. It's a powerful way to iteratively improve performance.
 
 However, while these reasoning models excel in text-based tasks like solving mathematical problems, they often struggle with tasks that require visual understanding. For example, benchmarks like ARC-AGI, which involve visual reasoning, remain challenging for these models, even though they might seem straightforward to a human.
 
-With the same spririt of the arc-agi test, we make the model learn on maze solver which is also the same easy for human but hard for AI. We're exploring how to enhance the visual thinking capabilities of reasoning models by focusing on a specific, visually-driven task: maze solving.
+Inspired by the spirit of the ARC-AGI test, we train the model on a maze-solving task—something intuitive for humans but challenging for AI. Our goal is to enhance the visual reasoning capabilities of AI by focusing on a task that requires spatial understanding and step-by-step problem-solving.
 
 ## Demo
 
@@ -44,13 +44,19 @@ With the same spririt of the arc-agi test, we make the model learn on maze solve
 
 ## Overview
 
-Prior research, such as Microsoft's "Multimodal Visualization-of-Thought (MVoT)", has shown that models can solve image-based mazes by generating visual representations of their reasoning process. However, these models still have limitations in their ability to create accurate visual representations and are often evaluated using multiple-choice question (MCQ) setups, which may not fully capture their reasoning abilities.
+Prior research, such as Microsoft's "[Multimodal Visualization-of-Thought (MVoT)](https://arxiv.org/abs/2501.07542)", has shown that models can solve image-based mazes by generating visual representations of their reasoning process. However, these models still have limitations in their ability to create accurate visual representations and are often evaluated using multiple-choice question (MCQ) setups, which may not fully capture their reasoning abilities.
 
-Alpha Maze takes a different approach. We built our model on a distilled, 7-billion parameter Qwen model (based on Deepseek), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
+Alpha Maze takes a different approach. We built our model on a distilled, [7-billion parameter Qwen model](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) (based on Deepseek-R1), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
+
+![GPT-4o and Qwen failed on solving a maze](./_assets/alphamaze/gpt-qwen.jpg)
+
+*[GPT-4o](https://chatgpt.com/c/67ac8a3a-d9f4-8008-b76d-3edd7afb3308) and [Qwen-Max](https://chat.qwenlm.ai/s/e4b3ba51-2902-4ae6-95df-fbf2d0f2145c) failed on solving a maze.*
+
+> Golden label: `<|up|> <|left|> <|left|> <|left|> <|up|> <|up|>`
 
 ## Training
 
-Our training process involved two key stages:  creating a specialized dataset and then using a combination of supervised fine-tuning (SFT) and reinforcement learning (RL) to train the model.
+Our training process involved two key stages: creating a specialized dataset and then using a combination of supervised fine-tuning (SFT) and reinforcement learning (RL) to train the model.
 
 ### Creating the Maze Dataset
 
@@ -71,13 +77,13 @@ The key innovation is our token system. We use special tokens to represent:
 *   **Movement:** `<|up|>`, `<|down|>`, `<|left|>`, `<|right|>` to represent the possible actions the model can take.
 *   **Special Markers:** `<|origin|>` and `<|target|>` to denote the starting and ending points.
 
-This system allows us to create step-by-step navigation sequences. Each step represents the entire maze state, with a single directional indicator, making it ideal for training a model to reason about its movements.
+This system enables us to generate step-by-step navigation sequences, where each step captures the entire maze state along with a single directional indicator. This structured representation makes it well-suited for training models to reason about movement and spatial decision-making.
 
-Outcome we obtain 100,000 maze examples link: https://huggingface.co/datasets/jan-hq/Maze-Reasoning.
+As a result, we have compiled a dataset of 100,000 maze examples, available here: [Maze-Reasoning Dataset](https://huggingface.co/datasets/jan-hq/Maze-Reasoning).
 
 **Implementation Details:**
 
-The token generation process is essentially a conversion of the maze structure into a carefully ordered sequence of these tokens.  This sequence provides a complete, step-by-step representation of the maze, suitable for training models on visual reasoning and pathfinding tasks.
+The token generation process is essentially a conversion of the maze structure into a carefully ordered sequence of these tokens. This sequence provides a complete, step-by-step representation of the maze, suitable for training models on visual reasoning and pathfinding tasks.
 
 ### Stage 1: Supervised Fine-Tuning 
 
@@ -94,7 +100,9 @@ We explored two approaches:
 *   **Visual Thinker Model:** Trained to predict the solution step-by-step, incorporating movement tokens within the reasoning process. This encourages the model to "think through" its moves.
 
 **SFT Hyperparameters:** 
-Training data: 75,000 samples cut off since we only train on 4096 maxlength.
+
+Training data: 75,000 samples (filter out samples have over 4096 tokens).
+
 Here’s the table without the category section:  
 
 | **Parameter**                     | **Value**                                      |
@@ -122,27 +130,27 @@ After SFT, we used GRPO to further refine the model's maze-solving abilities.  G
 
 A crucial aspect of reinforcement learning is the reward function, which guides the model towards desired behaviors. We designed a composite reward function with several components, each focusing on a different aspect of good maze-solving:
 
-1.  **`correctness_reward_func`**:
+1.  **`Correctness`**:
     *   **Purpose:** Checks if the model's final answer matches the correct solution.
     *   **Mechanism:** Extracts the model's predicted path (using `</think>` as a delimiter) and compares it to the ground truth.
     *   **Reward:** +2.0 for a correct solution, 0.0 otherwise. This is the most heavily weighted component, emphasizing accuracy.
 
-2.  **`int_reward_func`**:
+2.  **`Validity`**:
     *   **Purpose:** Ensures the model uses only valid movement tokens.
     *   **Mechanism:** Verifies that the reasoning steps contain only `<|up|>`, `<|down|>`, `<|left|>`, and `<|right|>`.
     *   **Reward:** +0.5 for a valid sequence, 0.0 otherwise. This enforces the correct "language" for navigation.
 
-3.  **`strict_format_reward_func`**:
+3.  **`Strict Formating`**:
     *   **Purpose:** Enforces a strict, XML-like formatting for the model's output.
     *   **Mechanism:** Uses a regular expression (`^<think>\n.*?\n</think>\n\n.*?\n$`) to check for precise newline placement and the presence of `<think>` and `</think>` tags.
     *   **Reward:** +0.5 for perfect formatting, 0.0 otherwise. This encourages structured output.
 
-4.  **`soft_format_reward_func`**:
+4.  **`Soft Formating`**:
     *   **Purpose:** Checks for the basic XML structure, but with more flexibility in formatting.
     *   **Mechanism:** Uses a more lenient regular expression (`<think>.*?</think>\s*.*?`) that allows for variations in whitespace and newlines.
     *   **Reward:** +0.5 for correctly using the `<think>` and `</think>` tags, 0.0 otherwise.
 
-5.  **`xmlcount_reward_func`**:
+5.  **`Tag Formating`**:
     *   **Purpose:** Encourages the correct usage of the XML tags.
     *   **Mechanism:** Checks for exactly one opening `<think>\n` (+0.125) and one closing `\n</think>\n` (+0.125).
     *   **Maximum Reward:** +0.25. This provides partial rewards for getting parts of the XML structure correct.
@@ -152,7 +160,7 @@ A crucial aspect of reinforcement learning is the reward function, which guides 
 The final reward is the sum of all these components:
 
 ```
-Total Reward = correctness_reward + int_reward + strict_format_reward + soft_format_reward + xmlcount_reward
+Total Reward = Correctness + Validity + Strict Formating + Soft Formating + Tag Formating
 ```
 
 **Maximum Possible Reward:** 2.0 + 0.5 + 0.5 + 0.5 + 0.25 = **3.75**
@@ -191,11 +199,13 @@ We use Unsloth framework, with 4bit quantization.
 We use [llama-factory]() to SFT the model
 Here's a summary of the SFT training runs:
 
-| Run ID | Date       | Model Config                                                                           | Dataset                                                                | Learning Rate | Batch Size | Steps | Loss    | Hardware                 |
-| :----- | :--------- | :------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- | :------------ | :--------- | :---- | :------ | :----------------------- |
-| exp-1  | 2025-02-06 | [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) | 1e-5          | 32         |       | 0.01    | ~1.5 hours on 6xA6000s |
-| exp-2  | 2025-02-06 | [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) | 1e-5          | 32         |       | 0.01    | ~1.5 hours on 6xA6000s |
-| exp-3  | 2025-02-08 | [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_7B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) | 1e-5          | 32         |       | 0.0077  | ~12 hours on 6xA6000s  |
+| Run ID        | Model Config                                                                           | Dataset                                                                |  Steps | Loss    | Hardware                 | Detailed Explanation                                                                                                                                                          |
+| :----- |  :------------ | :--------- | :---- | :------ | :----------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| exp-1  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)   |  | 0.01    | ~1.5 hours on 6xA6000s | Added new maze tokens |
+| exp-2  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)  |    | 0.01    | ~1.5 hours on 6xA6000s |  Pure text |
+| exp-3  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_7B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |      | 0.0077  | ~12 hours on 6xA6000s  | Expanded pure text training |
+
+> Adding new maze tokens results in poor performance. However, without the additional tokens, the model performed surprisingly well with the same training steps.
 
 ### GRPO
 
