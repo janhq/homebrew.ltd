@@ -20,7 +20,7 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 <BlogAuthors authors={["Alan Dao", "Bach Vu", "Louis Le", "Rex Ha"]}/> 
 
 ## Introduction
-Recent breakthroughs in large language models (LLMs) have demonstrated a fascinating concept: giving models time to think dramatically improves their performance. These "reasoning" models, as they're often called, have achieved remarkable results on complex mathematical benchmarks like [AIME and MATH](cite AIME, MATH). This success isn't limited to massive models like O3-mini and Deepseek-r1; the community has also achieved strong results by fine-tuning smaller, "distilled" models, such as [1.5b](cite deepsclaer) and [7b](cite open-r1) versions.
+Recent breakthroughs in large language models (LLMs) have demonstrated a fascinating concept: giving models time to think dramatically improves their performance. These "reasoning" models, as they're often called, have achieved remarkable results on complex mathematical benchmarks like [AIME](https://arxiv.org/abs/2410.03131) and [MATH](https://arxiv.org/abs/2103.03874). This success isn't limited to massive models like O3-mini and Deepseek-r1; the community has also achieved strong results by fine-tuning smaller, "distilled" models, such as [1.5b](https://huggingface.co/agentica-org/DeepScaleR-1.5B-Preview) and [7b](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) versions.
 
 The core algorithm driving much of this progress is [GRPO](https://arxiv.org/pdf/2402.03300) (Group Relative Policy Optimization). GRPO is an online learning method, meaning it constantly refines the model using data generated during the training process itself. It's a powerful way to iteratively improve performance.
 
@@ -247,8 +247,8 @@ This research demonstrates the potential for enhancing the visual thinking capab
 ## Acknowledgements
 
 - [Unsloth](https://www.google.com)
-- [MVoT]()
-- [Deepseek-r1]()
+- [MVoT](https://arxiv.org/abs/2501.07542)
+- [Deepseek-r1](https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf)
 
 ## Appendix
 Prompt for instruction model training (SFT and GRPO)
