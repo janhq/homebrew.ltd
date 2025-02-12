@@ -52,7 +52,7 @@ Alpha Maze takes a different approach. We built our model on a distilled, [7-bil
 
 *[GPT-4o](https://chatgpt.com/c/67ac8a3a-d9f4-8008-b76d-3edd7afb3308) and [Qwen-Max](https://chat.qwenlm.ai/s/e4b3ba51-2902-4ae6-95df-fbf2d0f2145c) failed on solving a maze.*
 
-> Golden label: `<|up|> <|left|> <|left|> <|left|> <|up|> <|up|>`
+> Correct answer: `<|up|> <|left|> <|left|> <|left|> <|up|> <|up|>`
 
 ## Training
 
@@ -195,15 +195,19 @@ We use Unsloth framework, with 4bit quantization.
 
 ## Results
 
+![AlphaMaze multi reasoning steps](./_assets/alphamaze/multisteps.png)
+
+*Visualization of AlphaMaze's step-by-step reasoning process while solving a maze. Each step shows the model's thought process and directional decision.*
+
 ### SFT
 We use [llama-factory]() to SFT the model
 Here's a summary of the SFT training runs:
 
 | Run ID        | Model Config                                                                           | Dataset                                                                |  Steps | Loss    | Hardware                 | Detailed Explanation                                                                                                                                                          |
 | :----- |  :------------ | :--------- | :---- | :------ | :----------------------- | :--------------------------------------------------------------------------------------------------------------------- |
-| exp-1  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)   |  | 0.01    | ~1.5 hours on 6xA6000s | Added new maze tokens |
-| exp-2  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)  |    | 0.01    | ~1.5 hours on 6xA6000s |  Pure text |
-| exp-3  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_7B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |      | 0.0077  | ~12 hours on 6xA6000s  | Expanded pure text training |
+| exp-1  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)   | 3125 | 0.01    | ~1.5 hours on 6xA6000s | Added new maze tokens |
+| exp-2  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)  |  3125  | 0.01    | ~1.5 hours on 6xA6000s |  Pure text |
+| exp-3  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_7B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |   2344   | 0.0077  | ~12 hours on 6xA6000s  | Expanded pure text training |
 
 > Adding new maze tokens results in poor performance. However, without the additional tokens, the model performed surprisingly well with the same training steps.
 
@@ -247,7 +251,7 @@ This research demonstrates the potential for enhancing the visual thinking capab
 - [Deepseek-r1]()
 
 ## Appendix
-prompt để instruction model cho trainign SFT and GRPO
+Prompt for instruction model training (SFT and GRPO)
 ```
 You are a helpful assistant that solves mazes.  You will be given a maze represented by a series of tokens.  
 The tokens represent:
