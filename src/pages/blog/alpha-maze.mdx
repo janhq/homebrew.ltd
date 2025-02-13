@@ -1,5 +1,5 @@
 ---
-title: "🌀 Alpha Maze"
+title: " AlphaMaze: Teaching LLMs to think visually"
 authorURL: https://twitter.com/homebrewltd
 description: ""
 tags: 
@@ -15,9 +15,13 @@ import ResearchCTABlog from '@/components/Blog/ResearchCTABlog'
 
 <BlogBackButton />
 
-# 🌀 Alpha Maze: Visual thinker
+#  AlphaMaze: Teaching LLMs to think visually
 
 <BlogAuthors authors={["Alan Dao", "Bach Vu", "Louis Le", "Rex Ha"]}/> 
+
+<Callout type="info">
+AlphaMaze is a decoder-only LLM designed to solve visual reasoning tasks that traditional language models struggle with on ARC-AGI benchmark. It tackles maze puzzles—tasks that humans solve intuitively but LLMs typically fail—through targeted visual decoding techniques.
+</Callout>
 
 ## Introduction
 Recent breakthroughs in large language models (LLMs) have demonstrated a fascinating concept: giving models time to think dramatically improves their performance. These "reasoning" models, as they're often called, have achieved remarkable results on complex mathematical benchmarks like [AIME](https://arxiv.org/abs/2410.03131) and [MATH](https://arxiv.org/abs/2103.03874). This success isn't limited to massive models like O3-mini and Deepseek-r1; the community has also achieved strong results by fine-tuning smaller, "distilled" models, such as [1.5b](https://huggingface.co/agentica-org/DeepScaleR-1.5B-Preview) and [7b](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) versions.
@@ -40,20 +44,24 @@ Inspired by the spirit of the ARC-AGI test, we train the model on a maze-solving
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 ></iframe>
 
-*The video demonstrates Alpha Maze's process: inputting a maze, the model will reason through and output of the most likely direction.*
+*The video demonstrates AlphaMaze's process: inputting a maze, the model will reason through and output of the most likely direction.*
 
 ## Overview
 
 Prior research, such as Microsoft's "[Multimodal Visualization-of-Thought (MVoT)](https://arxiv.org/abs/2501.07542)", has shown that models can solve image-based mazes by generating visual representations of their reasoning process. However, these models still have limitations in their ability to create accurate visual representations and are often evaluated using multiple-choice question (MCQ) setups, which may not fully capture their reasoning abilities.
 
-Alpha Maze takes a different approach. We built our model on a distilled, [7-billion parameter Qwen model](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) (based on Deepseek-R1), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
+AlphaMaze takes a different approach. We built our model on a distilled, [7-billion parameter Qwen model](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) (based on Deepseek-R1), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
 
 ### Normal LLM
 ![GPT-4o and Qwen failed on solving a maze](./_assets/alphamaze/gpt-qwen.png)
 
 *[GPT-4o](https://chatgpt.com/share/67ad9e1e-7548-8008-ac06-6acf3e10ea98) and [Qwen-Max](https://chat.qwenlm.ai/s/ec39be7a-1f62-4252-a240-61928c0042e0) failed on solving a maze.*
 
-### Alpha Maze
+<Callout type="warning">
+Current language models exhibit consistent limitations in maze navigation tasks, indicating a gap in spatial reasoning capabilities.
+</Callout>
+
+### AlphaMaze
 
 ![AlphaMaze multi reasoning steps](./_assets/alphamaze/multisteps.png)
 
@@ -73,16 +81,20 @@ However, we needed to transform these mazes into a format that our language mode
 
 Here's how we broke it down:
 
+<Callout type="info">
+Spatial relationships are encoded through a token system: `<row-col>` for coordinates, directional markers for walls, and `<up>`, `<down>`, `<left>`, `<right>` for movements.
+</Callout>
+
 1.  **Maze Structure:** We start with the maze's adjacency list, which defines how cells are connected.
 2.  **Start and End:** We specify the origin and target positions within the 5x5 grid.
 3.  **Solution Path:** We provide a sequence of coordinates representing the correct path through the maze.
 
 The key innovation is our token system. We use special tokens to represent:
 
-*   **Coordinates:** `<|row-col|>` (e.g., `<|0-0|>`, `<|2-4|>`) to identify each cell in the grid.
-*   **Walls:** Tokens like `<|no_wall|>`, `<|up_wall|>`, `<|down_wall|>`, etc., to indicate the presence or absence of walls in each direction.  This allows the model to "see" the maze's structure.
-*   **Movement:** `<|up|>`, `<|down|>`, `<|left|>`, `<|right|>` to represent the possible actions the model can take.
-*   **Special Markers:** `<|origin|>` and `<|target|>` to denote the starting and ending points.
+*   **Coordinates:** `<row-col>` (e.g., `<0-0>`, `<2-4>`) to identify each cell in the grid.
+*   **Walls:** Tokens like `<no_wall>`, `<up_wall>`, `<down_wall>`, etc., to indicate the presence or absence of walls in each direction.  This allows the model to "see" the maze's structure.
+*   **Movement:** `<up>`, `<down>`, `<left>`, `<right>` to represent the possible actions the model can take.
+*   **Special Markers:** `<origin>` and `<target>` to denote the starting and ending points.
 
 This system enables us to generate step-by-step navigation sequences, where each step captures the entire maze state along with a single directional indicator. This structured representation makes it well-suited for training models to reason about movement and spatial decision-making.
 
@@ -142,9 +154,13 @@ A crucial aspect of reinforcement learning is the reward function, which guides 
     *   **Mechanism:** Extracts the model's predicted path (using `</think>` as a delimiter) and compares it to the ground truth.
     *   **Reward:** +2.0 for a correct solution, 0.0 otherwise. This is the most heavily weighted component, emphasizing accuracy.
 
+<Callout type="info">
+The reward function implements a dual-weighted system: solution accuracy (2.0) and move validity (0.5), optimizing for both correctness and constraint satisfaction.
+</Callout>
+
 2.  **`Validity`**:
     *   **Purpose:** Ensures the model uses only valid movement tokens.
-    *   **Mechanism:** Verifies that the reasoning steps contain only `<|up|>`, `<|down|>`, `<|left|>`, and `<|right|>`.
+    *   **Mechanism:** Verifies that the reasoning steps contain only `<up>`, `<down>`, `<left>`, and `<right>`.
     *   **Reward:** +0.5 for a valid sequence, 0.0 otherwise. This enforces the correct "language" for navigation.
 
 3.  **`Strict Formating`**:
@@ -214,6 +230,10 @@ Here's a summary of the SFT training runs:
 
 > Adding new maze tokens results in poor performance. However, without the additional tokens, the model performed surprisingly well with the same training steps.
 
+<Callout type="note">
+Experimental results suggest reduced token complexity correlates with improved spatial-to-language translation performance.
+</Callout>
+
 ### GRPO
 
 The training performance was monitored at three key intervals: 100 steps, 300 steps, and 600 steps. The following tables summarize the observed behavior and outcomes for each model at these intervals.
@@ -258,13 +278,13 @@ Prompt for instruction model training (SFT and GRPO)
 ```
 You are a helpful assistant that solves mazes.  You will be given a maze represented by a series of tokens.  
 The tokens represent:
-- Coordinates: <|row-col|> (e.g., <|0-0|>, <|2-4|>)
-- Walls:  <|no_wall|>, <|up_wall|>, <|down_wall|>, <|left_wall|>, <|right_wall|>, <|up_down_wall|>, etc.
-- Origin: <|origin|>
-- Target: <|target|>
-- Movement: <|up|>, <|down|>, <|left|>, <|right|>, <|blank|>
+- Coordinates: `<row-col>` (e.g., `<0-0>`, `<2-4>`)
+- Walls:  `<no_wall>`, `<up_wall>`, `<down_wall>`, `<left_wall>`, `<right_wall>`, `<up_down_wall>`, etc.
+- Origin: `<origin>`
+- Target: `<target>`
+- Movement: `<up>`, `<down>`, `<left>`, `<right>`, `<blank>`
 
-Your task is to output the sequence of movements (<|up|>, <|down|>, <|left|>, <|right|>) required to navigate from the origin to the target, based on the provided maze representation.  Think step by step. At each step, predict only the next movement token. Output only the move tokens, separated by spaces.
+Your task is to output the sequence of movements (`<up>`, `<down>`, `<left>`, `<right>`) required to navigate from the origin to the target, based on the provided maze representation.  Think step by step. At each step, predict only the next movement token. Output only the move tokens, separated by spaces.
 MAZE:
 {maze_prompt}
 ```
