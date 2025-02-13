@@ -34,7 +34,7 @@ Inspired by the spirit of the ARC-AGI test, we train the model on a maze-solving
 
 <iframe
     className="w-full aspect-video"
-    src={`https://www.youtube.com/embed/6FOntVBddAg`}
+    src={`https://www.youtube.com/embed/dUS9wR03on8`}
     title="YouTube Video"
     frameBorder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -48,9 +48,16 @@ Prior research, such as Microsoft's "[Multimodal Visualization-of-Thought (MVoT)
 
 Alpha Maze takes a different approach. We built our model on a distilled, [7-billion parameter Qwen model](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) (based on Deepseek-R1), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
 
-![GPT-4o and Qwen failed on solving a maze](./_assets/alphamaze/gpt-qwen.jpg)
+### Normal LLM
+![GPT-4o and Qwen failed on solving a maze](./_assets/alphamaze/gpt-qwen.png)
 
-*[GPT-4o](https://chatgpt.com/c/67ac8a3a-d9f4-8008-b76d-3edd7afb3308) and [Qwen-Max](https://chat.qwenlm.ai/s/e4b3ba51-2902-4ae6-95df-fbf2d0f2145c) failed on solving a maze.*
+*[GPT-4o](https://chatgpt.com/share/67ad9e1e-7548-8008-ac06-6acf3e10ea98) and [Qwen-Max](https://chat.qwenlm.ai/s/ec39be7a-1f62-4252-a240-61928c0042e0) failed on solving a maze.*
+
+### Alpha Maze
+
+![AlphaMaze multi reasoning steps](./_assets/alphamaze/multisteps.png)
+
+*Visualization of AlphaMaze's step-by-step reasoning process while solving a maze. Each step shows the model's thought process and directional decision.*
 
 > Correct answer: `<|up|> <|left|> <|left|> <|left|> <|up|> <|up|>`
 
@@ -194,10 +201,6 @@ We use Unsloth framework, with 4bit quantization.
 | max_grad_norm                 | 0.1                                         |
 
 ## Results
-
-![AlphaMaze multi reasoning steps](./_assets/alphamaze/multisteps.png)
-
-*Visualization of AlphaMaze's step-by-step reasoning process while solving a maze. Each step shows the model's thought process and directional decision.*
 
 ### SFT
 We use [llama-factory]() to SFT the model
