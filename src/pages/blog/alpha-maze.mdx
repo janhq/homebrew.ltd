@@ -138,7 +138,8 @@ Training data: 100,000 samples (filter out samples have over 4096 tokens).
 | `warmup_ratio`                | `0.1`                                      |
 | `bf16`                        | `true`                                     |
 
-### Key Fixes### Stage 2: Reinforcement Learning (RL) with GRPO
+
+### Stage 2: Reinforcement Learning (RL) with GRPO
 
 After SFT, we used GRPO to further refine the model's maze-solving abilities.  GRPO is particularly well-suited for this task because it allows the model to learn from its own generated solutions, iteratively improving its strategy.
 
