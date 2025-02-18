@@ -225,6 +225,7 @@ Here's a summary of the SFT training runs:
 | exp-1  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)   | 3125 | 0.01    | ~1.5 hours on 6xA6000s | Added new maze tokens |
 | exp-2  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)  |  3125  | 0.01    | ~1.5 hours on 6xA6000s |  Pure text |
 | exp-3  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_7B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |   2344   | 0.0077  | ~12 hours on 6xA6000s  | Expanded pure text training |
+| exp-4  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |   2344   | ~0  | ~1.5 hours on 6xA6000s  | Expanded pure text training |
 
 > Adding new maze tokens results in poor performance. However, without the additional tokens, the model performed surprisingly well with the same training steps.
 
