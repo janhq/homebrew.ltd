@@ -50,7 +50,7 @@ Inspired by the spirit of the ARC-AGI test, we train the model on a maze-solving
 
 Prior research, such as Microsoft's "[Multimodal Visualization-of-Thought (MVoT)](https://arxiv.org/abs/2501.07542)", has shown that models can solve image-based mazes by generating visual representations of their reasoning process. However, these models still have limitations in their ability to create accurate visual representations and are often evaluated using multiple-choice question (MCQ) setups, which may not fully capture their reasoning abilities.
 
-AlphaMaze takes a different approach. We built our model on a distilled, [7-billion parameter Qwen model](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) (based on Deepseek-R1), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
+AlphaMaze takes a different approach. We built our model on a distilled, [1.5-billion parameter Qwen model](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B) (based on Deepseek-R1), and trained it to solve mazes presented in a text-based format. Our core hypothesis is that if a model can successfully reconstruct a maze from a text description and use that internal representation to plan its next move, it demonstrates a form of visual reasoning.
 
 ### Normal LLM
 ![GPT-4o and Qwen failed on solving a maze](./_assets/alphamaze/gpt-qwen.png)
