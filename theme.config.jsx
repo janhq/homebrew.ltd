@@ -9,8 +9,8 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa";
 import ThemeImage from "@/components/ThemeImage";
 
-const defaultUrl = "https://menlo.ltd";
-const defaultImage = "https://menlo.ltd/assets/images/general/og-image.png";
+const defaultUrl = "https://menlo.ai";
+const defaultImage = "https://menlo.ai/assets/images/general/og-image.png";
 
 const structuredData = {
   "@context": "https://schema.org",
