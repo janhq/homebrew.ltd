@@ -9,13 +9,13 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { FaLinkedin } from "react-icons/fa";
 import ThemeImage from "@/components/ThemeImage";
 
-const defaultUrl = "https://homebrew.ltd";
-const defaultImage = "https://homebrew.ltd/assets/images/general/og-image.png";
+const defaultUrl = "https://menlo.ltd";
+const defaultImage = "https://menlo.ltd/assets/images/general/og-image.png";
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Homebrew",
+  name: "Menlo",
   url: `${defaultUrl}`,
   logo: `${defaultImage}`,
 };
@@ -85,12 +85,12 @@ export default {
   docsRepositoryBase: "https://github.com/janhq/homebrew/tree/main",
   useNextSeoProps() {
     return {
-      titleTemplate: "%s – Homebrew",
+      titleTemplate: "%s – Menlo",
     };
   },
   head: function useHead() {
     const { title, frontMatter } = useConfig();
-    const titleTemplate = (frontMatter?.title || title) + " - " + "Homebrew";
+    const titleTemplate = (frontMatter?.title || title) + " - " + "Menlo";
     const { asPath } = useRouter();
 
     return (
