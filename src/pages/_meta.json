@@ -6,11 +6,13 @@
   },
   "about": {
     "type": "page",
-    "title": "About"
+    "title": "About",
+    "display": "hidden"
   },
   "blog": {
     "type": "page",
-    "title": "Blog"
+    "title": "Blog",
+    "display": "hidden"
   },
   "work-with-us": {
     "type": "page",
