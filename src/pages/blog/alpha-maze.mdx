@@ -120,7 +120,7 @@ We explored two approaches:
 
 **SFT Hyperparameters:** 
 
-Training data: 100,000 samples (filter out samples have over 4096 tokens).
+Training data: 500,000 samples (filter out samples have over 4096 tokens).
 
 | Parameter                     | Value                                      |
 |-------------------------------|--------------------------------------------|
@@ -128,9 +128,9 @@ Training data: 100,000 samples (filter out samples have over 4096 tokens).
 | `disable_gradient_checkpointing` | `true`                                    |
 | `finetuning_type`             | `full`                                     |
 | `deepspeed`                   | `ds0`                                      |
-| `cutoff_len`                  | `8192`                                     |
+| `cutoff_len`                  | `4096`                                     |
 | `train_on_prompt`             | `true`                                     |
-| `per_device_train_batch_size` | `4`                                        |
+| `per_device_train_batch_size` | `32`                                        |
 | `gradient_accumulation_steps` | `1`                                        |
 | `learning_rate`               | `1.0e-5`                                   |
 | `num_train_epochs`            | `1.0`                                      |
@@ -196,18 +196,18 @@ For the GRPO training, we configured the following parameters and models:
 *   **Base Model:** [DeepSeek R1 Distill Qwen 1.5B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B/tree/main).
 *   **SFT Model:** [AlphaMaze-SFT](), pre-trained with supervised fine-tuning on the maze dataset.
 
-We use Unsloth framework, with 4bit quantization.
+We use Unsloth framework.
 
 | Parameter                     | Value                                      |
 |---------------------------------|--------------------------------|
 | learning_rate                 | 1e-6                                        |
-|alpha|32|
-|r|32|
+|alpha|128|
+|r|128|
 | weight_decay                  | 0.1                                         |
 | warmup_ratio                  | 0.1                                         |
 | lr_scheduler_type             | cosine                                      |
 | optim                         | paged_adamw_8bit                            |
-| per_device_train_batch_size   | 1                                           |
+| per_device_train_batch_size   | 8                                           |
 | gradient_accumulation_steps   | 1     |
 | num_generations               | 4              |
 | max_prompt_length             | 612                                         |
@@ -226,6 +226,7 @@ Here's a summary of the SFT training runs:
 | exp-2  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml) | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning)  |  3125  | 0.01    | ~1.5 hours on 6xA6000s |  Pure text |
 | exp-3  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_7B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |   2344   | 0.0077  | ~12 hours on 6xA6000s  | Expanded pure text training |
 | exp-4  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |   2344   | ~0  | ~1.5 hours on 6xA6000s  | Expanded pure text training |
+| exp-5  |  [Full-Finetune](https://github.com/janhq/visual-thinker/blob/main/training/Llama-factory-config/Qwen2.5_1.5B_distil.yaml)  | [Maze Reasoning](https://huggingface.co/datasets/jan-hq/Maze-Reasoning) |   3681   | ~0.02  | ~1 hours on 8xH200s  | Added new maze tokens |
 
 > Adding new maze tokens results in poor performance. However, without the additional tokens, the model performed surprisingly well with the same training steps.
 
@@ -235,16 +236,9 @@ Experimental results suggest reduced token complexity correlates with improved s
 
 ### GRPO
 
-The training performance was monitored at three key intervals: 100 steps, 300 steps, and 600 steps. The following tables summarize the observed behavior and outcomes for each model at these intervals.
+Figure below displays the MazeBench scores (blue crosses) over GRPO steps along with a linear regression trendline (red dashed line). The steady increase in the trendline indicates that GRPO effectively guides the model towards improved maze-solving policies.
 
-| **Steps** | **Model Type** | **Loss Behavior**                                    | **Observations**                                               |
-|----------|--------------|------------------------------------------------------|----------------------------------------------------------------|
-| **100**  | **SFT**      | Loss converged to nearly 0.                          | Produced usable results in early training.                     |
-|          | **Base**     | Experienced overthinking beyond the 4096-token context. | The reward function was ineffective, preventing achievement of desired results. |
-| **300**  | **SFT**      | Loss remained close to 0.                            | Continued to produce good results.                             |
-|          | **Base**     | Continued overthinking beyond 4096 tokens.           | The reward function still failed to provide effective guidance, and the model did not reach the target outcomes. |
-| **600**  | **SFT**      | Loss maintained near 0.                              | The reward function plateaued, suggesting that further training might not yield significant improvements. |
-|          | **Base**     | Training was halted.                                 | Due to persistent issues with overthinking and an ineffective reward function, training of the Base model was stopped. |  
+![](./_assets/alphamaze/grpo_progress.png)
 
 ### Key Takeaways
 - **GRPO without a Cold Start is challenging:**  Starting GRPO training from a base model (without SFT) proved difficult.  The model struggled to learn the task and exhibited "overthinking" behavior, exceeding the context length.
@@ -265,6 +259,11 @@ This research demonstrates the potential for enhancing the visual thinking capab
 *   **Different Visual Tasks:** Explore the application of this approach to other visual reasoning tasks beyond maze solving.
 *   **Refined Reward Functions:** Investigate alternative reward function designs to further improve training efficiency and model performance.
 *   **Integration with Visual Encoders:** Explore combining this text-based approach with visual encoders to create truly multimodal reasoning models.
+
+## Model Links
+- [GitHub repo](https://github.com/janhq/visual-thinker)
+- [AlphaMaze v0.5](https://huggingface.co/homebrewltd/AlphaMaze-v0.2-1.5B)
+
 
 ## Acknowledgements
 
